@@ -25,9 +25,9 @@ class CarController extends Controller
     public function newAction()
     {
         $car = new Car();
-        $car->setName("BMW".rand(1,7));
+        $car->setName("BMW" . rand(1, 7));
         $car->setCarType('Universal');
-        $car->setDriverId(rand(1,10));
+        $car->setDriverId(rand(1, 10));
 
 
         $em = $this->getDoctrine()->getManager();
@@ -35,7 +35,22 @@ class CarController extends Controller
         $em->flush();
 
         return new Response('<html><body>Car created</body></html>');
+    }
 
+
+    /**
+     * @Route("/car_list")
+     *
+     */
+    public function listAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $cars = $em->getRepository('AppBundle:Car')
+            ->findAll();
+
+        return $this->render('taxopark/carList.html.twig', [
+            'cars' => $cars
+        ]);
 
     }
 

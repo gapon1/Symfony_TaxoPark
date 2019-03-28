@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Cars List {% endblock %}
+
+{% block body %}
+
+    <h2 class="genus-name">Cars List</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Car</th>
+            <th>Car type</th>
+            <th>Work in system</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for car in cars %}
+
+            <tr>
+                <td>{{ car.name }}</td>
+                <td>{{ car.CarType }}</td>
+                <td>{{ car.updatedAt|date('Y-m-d') }}</td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+
+    </table>
+
+
+
+
+{% endblock %}

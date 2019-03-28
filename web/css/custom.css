@@ -47,7 +47,9 @@ footer{
 	width: 100%;
 	bottom: 0;
 }
-
+.top_sect{
+	padding: 0!important;
+}
 .form-signin input, .form-signin textarea {
 	margin-bottom: 20px;
 	display: block;
