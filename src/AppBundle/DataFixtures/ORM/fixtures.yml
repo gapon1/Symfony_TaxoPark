@@ -1,0 +1,8 @@
+AppBundle\Entity\Car:
+  car_{1..5}:
+    name: <username()> - <carName()>
+    carDiscript: <text(20)>
+    carImg: <carName()>.png
+    carType: <carType()>
+    driverId: <numberBetween(10, 1000)>
+

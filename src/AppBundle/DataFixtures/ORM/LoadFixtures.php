@@ -8,27 +8,35 @@
 
 namespace AppBundle\DataFixtures\ORM;
 
-
-use AppBundle\Entity\Car;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Nelmio\Alice\Fixtures;
 
 class LoadFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        Fixtures::load(__DIR__ . '/fixtures.yml',
+            $manager,
+            [
+                'providers' => [$this]
+            ]
+        );
 
-        for ($i = 0; $i < 2; $i++) {
-            $product = new Car();
-            $product->setName('product '.$i);
-            $product->setCarDiscript("Desc");
-            $product->setCarImg("BMW-2.png");
-            $product->setCarType("hachback");
-            $product->setDriverId(rand(1,10));
-            $manager->persist($product);
-        }
+    }
 
-        $manager->flush();
+    public function carName()
+    {
+        $generate = ['BMW-1', 'BMW-2', 'BMW-3', 'BMW-4', 'BMW-5', 'BMW-6', 'BMW-7'];
+        $key = array_rand($generate);
+        return $generate[$key];
+    }
+
+    public function carType()
+    {
+        $generate = ['Universal', 'Economy', 'Premium', 'Luxury'];
+        $key = array_rand($generate);
+        return $generate[$key];
     }
 
 }
