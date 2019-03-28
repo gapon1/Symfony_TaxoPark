@@ -38,6 +38,7 @@ class CarController extends Controller
         return new Response('<html><body>Car created</body></html>');
     }
 
+
     /**
      * @Route("/car_list")
      *
@@ -52,6 +53,7 @@ class CarController extends Controller
             'cars' => $cars
         ]);
     }
+
 
     /**
      * @Route("car/{carName}", name="car_show")
