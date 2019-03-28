@@ -1,9 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Taxo Park Show{% endblock %}
+{% block title %} Taxo Park Show {{ car.name }}{% endblock %}
 
 {% block body %}
 
-    <h2 class="genus-name">Name is : {{ name }}</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>In system</th>
+            <th>Discript</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>{{ car.name }}</td>
+            <td>{{ car.carType }}</td>
+            <td>{{ car.updatedAt|date('Y-m-d') }}</td>
+            <td>{{ car.carDiscript }}</td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <br>
+    <div class="text-center">
+    <img width="500"  src="{{ asset('../img/') }}{{ car.carImg }}">
+    </div>
 
 {% endblock %}

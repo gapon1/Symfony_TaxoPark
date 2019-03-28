@@ -39,6 +39,49 @@ class Car
      */
     private $driver_id;
 
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $carDiscript;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $carImg;
+
+    /**
+     * @return mixed
+     */
+    public function getCarImg()
+    {
+        return $this->carImg;
+    }
+
+    /**
+     * @param mixed $carImg
+     */
+    public function setCarImg($carImg)
+    {
+        $this->carImg = $carImg;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCarDiscript()
+    {
+        return $this->carDiscript;
+    }
+
+    /**
+     * @param mixed $carDiscript
+     */
+    public function setCarDiscript($carDiscript)
+    {
+        $this->carDiscript = $carDiscript;
+    }
+
     /**
      * @return mixed
      */
