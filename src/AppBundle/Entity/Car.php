@@ -28,6 +28,51 @@ class Car
      */
     private $name;
 
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $car_type;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $driver_id;
+
+    /**
+     * @return mixed
+     */
+    public function getCarType()
+    {
+        return $this->car_type;
+    }
+
+    /**
+     * @param mixed $car_type
+     */
+    public function setCarType($car_type)
+    {
+        $this->car_type = $car_type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDriverId()
+    {
+        return $this->driver_id;
+    }
+
+    /**
+     * @param mixed $driver_id
+     */
+    public function setDriverId($driver_id)
+    {
+        $this->driver_id = $driver_id;
+    }
+
+
+
     /**
      * @return mixed
      */
