@@ -26,6 +26,8 @@ class CarController extends Controller
     {
         $car = new Car();
         $car->setName("BMW".rand(1,7));
+        $car->setCarType('Universal');
+        $car->setDriverId(rand(1,10));
 
 
         $em = $this->getDoctrine()->getManager();
