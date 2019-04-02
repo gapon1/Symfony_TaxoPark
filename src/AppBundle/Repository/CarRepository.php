@@ -9,21 +9,22 @@
 namespace AppBundle\Repository;
 
 
+use AppBundle\Entity\Car;
 use Doctrine\ORM\EntityRepository;
 
 class CarRepository extends EntityRepository
 {
-    /**
-     * @return mixed
-     */
-    public function findAllPublishedOrderBySize()
+
+    public function getFreeCar(Car $category)
     {
         return $this->createQueryBuilder('car')
-            ->andWhere('car.driver_id = :driver_id')
-            ->setParameter('driver_id', 903)
+            ->andWhere('car.name = :carName')
+            ->setParameter('carName', $category)
+            ->select('car.name')
             ->getQuery()
             ->execute();
 
     }
+
 
 }

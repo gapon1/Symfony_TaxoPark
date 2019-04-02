@@ -29,7 +29,7 @@ class CarController extends Controller
         $car->setCarType('Universal');
         $car->setDriverId(rand(1, 10));
         $car->setCarDiscript('Some Descriptions');
-        $car->setCarImg('BMW-' . $random . '.png');
+        $car->setCarImg('BMW-'.$random.'.png');
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($car);
@@ -37,7 +37,6 @@ class CarController extends Controller
 
         return new Response('<html><body>Car created</body></html>');
     }
-
 
     /**
      * @Route("/car_list")
@@ -47,13 +46,12 @@ class CarController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $cars = $em->getRepository('AppBundle:Car')
-            ->findAllPublishedOrderBySize();
+            ->findAll();
 
         return $this->render('taxopark/carList.html.twig', [
             'cars' => $cars
         ]);
     }
-
 
     /**
      * @Route("car/{carName}", name="car_show")

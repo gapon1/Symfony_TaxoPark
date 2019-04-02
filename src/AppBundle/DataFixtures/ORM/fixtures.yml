@@ -5,4 +5,23 @@ AppBundle\Entity\Car:
     carImg: <carName()>.png
     carType: <carType()>
     driverId: <numberBetween(10, 1000)>
+#    order: '@orders_*'
 
+
+AppBundle\Entity\Orders:
+  orders_{1..5}:
+    UserId: <numberBetween(1, 10)>
+    CarId:  <numberBetween(1, 10)>
+    FromAddress: <text(20)>
+    ToAddress: <text(20)>
+    Status: <status()>
+#    car: '@car_*'
+
+
+AppBundle\Entity\User:
+  user_{1..5}:
+    name: <username()>
+    password:  <numberBetween(1, 100000)>
+    email: <email()>
+    UseId: <numberBetween(1, 10)>
+    role: <role()>

@@ -39,4 +39,17 @@ class LoadFixtures extends Fixture
         return $generate[$key];
     }
 
+    public function status()
+    {
+        $generate = ['call', 'waiting', 'satDown', 'finished'];
+        $key = array_rand($generate);
+        return $generate[$key];
+    }
+
+    public function role()
+    {
+        $generate = ['ADMIN', 'CUSTOMER', 'DRIVER'];
+        $key = array_rand($generate);
+        return $generate[$key];
+    }
 }

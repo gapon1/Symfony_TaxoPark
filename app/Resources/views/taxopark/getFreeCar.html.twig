@@ -13,11 +13,21 @@
         </thead>
 
         <tbody>
+
+            {% for car in get_cars %}
+
         <tr>
-            <td>{{ get_cars }}</td>
-
-
+            <td>
+                <a href="{{ path('car_show',{'carName': car.name}) }}">{{ car.name }}</a>
+            </td>
+            <td>{{ car.CarType }}</td>
+            <td>{{ car.updatedAt|date('Y-m-d') }}</td>
         </tr>
+
+        {% endfor %}
+
+
+
         </tbody>
 
     </table>

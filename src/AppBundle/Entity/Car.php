@@ -50,6 +50,20 @@ class Car
      */
     private $carImg;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @return mixed
      */
@@ -137,5 +151,8 @@ class Car
         return new \DateTime('-'.rand(0,100). 'days');
 
     }
+
+
+
 
 }

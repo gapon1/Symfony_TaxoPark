@@ -8,6 +8,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -23,6 +24,18 @@ class Orders
      */
     private $id;
 
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @ORM\Column(type="integer")
      */
@@ -32,21 +45,6 @@ class Orders
      * @ORM\Column(type="integer")
      */
     private $car_id;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $fromAddress;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $toAddress;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $status;
 
     /**
      * @return mixed
@@ -79,6 +77,24 @@ class Orders
     {
         $this->car_id = $car_id;
     }
+
+
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $fromAddress;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $toAddress;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $status;
+
 
     /**
      * @return mixed
@@ -127,5 +143,8 @@ class Orders
     {
         $this->status = $status;
     }
+
+
+
 
 }
