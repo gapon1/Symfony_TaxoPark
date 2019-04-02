@@ -58,9 +58,6 @@ class AdminController extends Controller
             ->findAll();
 
 
-
-
-
         return $this->render('taxopark/getFreeCar.html.twig', array(
             'get_cars' => $cars
         ));

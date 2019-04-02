@@ -9,6 +9,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Car;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +30,7 @@ class CarController extends Controller
         $car->setCarType('Universal');
         $car->setDriverId(rand(1, 10));
         $car->setCarDiscript('Some Descriptions');
-        $car->setCarImg('BMW-'.$random.'.png');
+        $car->setCarImg('BMW-' . $random . '.png');
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($car);
@@ -42,14 +43,28 @@ class CarController extends Controller
      * @Route("/car_list")
      *
      */
-    public function listAction()
+    public function listAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $cars = $em->getRepository('AppBundle:Car')
             ->findAll();
 
+
+        /**
+         * @var $paginator
+         */
+        $paginator = $this->get('knp_paginator');
+
+        $result = $paginator->paginate(
+            $cars,
+            $request->query->getInt('page', 1),
+            $request->query->getInt('limit', 3)
+
+        );
+
+
         return $this->render('taxopark/carList.html.twig', [
-            'cars' => $cars
+            'cars' => $result
         ]);
     }
 
