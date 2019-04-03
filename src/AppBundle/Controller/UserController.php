@@ -9,6 +9,8 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\User;
+use AppBundle\Form\UserFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +27,6 @@ class UserController extends Controller
         $get_users = $em->getRepository('AppBundle:User')
             ->findAll();
 
-
         /**
          * @var $paginator
          */
@@ -37,7 +38,6 @@ class UserController extends Controller
             $request->query->getInt('limit', 4)
 
         );
-
 
         return $this->render('user/list.html.twig', [
             'all_users' => $result
@@ -65,5 +65,93 @@ class UserController extends Controller
         ]);
 
     }
+
+
+    // ================== ADD Data in form =============
+
+    /**
+     * @Route("/add_user/new", name="user_new_create")
+     */
+    public function newAction(Request $request)
+    {
+        $form = $this->createForm(UserFormType::class);
+
+        // only handles data on POST
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash(
+                'success',
+                sprintf('User created - you (%s) - Your are amazing', $this->getUser())
+            );
+
+            return $this->redirectToRoute('all_users');
+        }
+
+        return $this->render('user/new.html.twig', [
+            'userForm' => $form->createView()
+        ]);
+    }
+
+
+
+
+
+    // ================== Update Data in form =============
+
+    /**
+     * @Route("/user/{id}/edit", name="user_edit")
+     */
+    public function editAction(Request $request, User $user)
+    {
+        $form = $this->createForm(UserFormType::class, $user);
+
+        // only handles data on POST
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            $this->addFlash('success', 'User updated!');
+
+            return $this->redirectToRoute('all_users');
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'userForm' => $form->createView()
+        ]);
+    }
+
+
+    // ================ DELETE USER ================
+
+    /**
+     * @Route("/delete/{id}", name="delete")
+     *
+     */
+    public function dleteAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $em->getRepository('AppBundle:User')->find($id);
+
+        if (!$user) {
+            return $this->redirectToRoute('all_users');
+        }
+
+        $em->remove($user);
+        $em->flush();
+
+        return $this->redirectToRoute('all_users');
+
+    }
+
 
 }

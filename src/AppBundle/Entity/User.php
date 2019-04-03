@@ -24,6 +24,15 @@ class User
     private $id;
 
     /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
+    /**
      * @ORM\Column(type="string")
      */
     private $name;
@@ -127,8 +136,6 @@ class User
     {
         $this->role = $role;
     }
-
-
 
 
 }
