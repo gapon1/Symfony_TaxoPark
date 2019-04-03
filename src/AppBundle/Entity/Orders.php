@@ -24,6 +24,14 @@ class Orders
      */
     private $id;
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
 
 

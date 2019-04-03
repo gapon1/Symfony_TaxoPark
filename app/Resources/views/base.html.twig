@@ -50,13 +50,16 @@
         <div class="collapse navbar-collapse" id="navbar">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">User Management</a>
+                    <a href="{{ path('all_users') }}">User Management</a>
                 </li>
                 <li>
-                    <a href="#">Car Management</a>
+                    <a href="{{ path('car_list') }}">Car Management</a>
                 </li>
                 <li>
                     <a href="{{ path('get_free_car') }}">Get Car</a>
+                </li>
+                <li>
+                    <a href="{{ path('show_orders') }}">Orders</a>
                 </li>
             </ul>
 

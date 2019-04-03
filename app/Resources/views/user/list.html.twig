@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Cars List {% endblock %}
+
+{% block body %}
+
+    <h2 class="genus-name">User List</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for user in all_users %}
+
+            <tr>
+                <td>
+                    <a href="{{ path('user_show',{'userName': user.name}) }}">{{ user.name }}</a>
+                </td>
+
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div class="navigation text-center">
+        {{ knp_pagination_render(all_users) }}
+    </div>
+
+
+{% endblock %}

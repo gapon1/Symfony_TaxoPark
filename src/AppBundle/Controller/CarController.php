@@ -40,7 +40,7 @@ class CarController extends Controller
     }
 
     /**
-     * @Route("/car_list")
+     * @Route("/car_list", name="car_list")
      *
      */
     public function listAction(Request $request)
