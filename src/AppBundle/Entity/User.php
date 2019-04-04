@@ -30,7 +30,6 @@ class User implements UserInterface
         return $this->id;
     }
 
-
     /**
      * @Assert\NotBlank()
      * @Assert\Email()
@@ -58,8 +57,6 @@ class User implements UserInterface
     {
         $this->name = $name;
     }
-
-
 
     /**
      * The encoded password
