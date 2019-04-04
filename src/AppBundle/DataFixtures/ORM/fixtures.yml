@@ -18,10 +18,8 @@ AppBundle\Entity\Orders:
 #    car: '@car_*'
 
 
-AppBundle\Entity\User:
-  user_{1..5}:
-    name: <username()>
-    password:  <numberBetween(1, 100000)>
-    email: <email()>
-    UseId: <numberBetween(1, 10)>
-    role: <role()>
+#AppBundle\Entity\User:
+#  user_{1..5}:
+#    password:  <numberBetween(1, 100000)>
+#    email: <email()>
+#    roles: <role()>

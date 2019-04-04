@@ -21,15 +21,7 @@ class UserFormType extends AbstractType
         $builder
             ->add('name')
             ->add('password')
-            ->add('email')
-            ->add('useId')
-            ->add('role', ChoiceType::class, [
-                'choices' => [
-                    'ADMIN' => 'ADMIN',
-                    'DRIVER' => 'DRIVER',
-                    'CUSTOMER' => 'CUSTOMER',
-                ]
-            ]);
+            ->add('email');
     }
 
     public function configureOptions(OptionsResolver $resolver)

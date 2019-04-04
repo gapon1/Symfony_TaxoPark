@@ -1,20 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pro
- * Date: 2019-03-28
- * Time: 20:31
- */
 
 namespace AppBundle\Entity;
 
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="user")
+ * @UniqueEntity(fields={"email"}, message="It looks like your already have an account!")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id
@@ -33,29 +32,16 @@ class User
 
 
     /**
-     * @ORM\Column(type="string")
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="string")
-     */
-    private $password;
-
-    /**
-     * @ORM\Column(type="string")
+     * @Assert\NotBlank()
+     * @Assert\Email()
+     * @ORM\Column(type="string", unique=true)
      */
     private $email;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $use_id;
-
-    /**
      * @ORM\Column(type="string")
      */
-    private $role;
+    private $name;
 
     /**
      * @return mixed
@@ -73,69 +59,91 @@ class User
         $this->name = $name;
     }
 
+
+
     /**
-     * @return mixed
+     * The encoded password
+     *
+     * @ORM\Column(type="string")
      */
+    private $password;
+
+    /**
+     * A non-persisted field that's used to create the encoded password.
+     * @Assert\NotBlank(groups={"Registration"})
+     *
+     * @var string
+     */
+    private $plainPassword;
+
+    /**
+     * @ORM\Column(type="json_array")
+     */
+    private $roles = [];
+
+    // needed by the security system
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    public function getRoles()
+    {
+        $roles = $this->roles;
+
+        // give everyone ROLE_USER!
+        if (!in_array('ROLE_USER', $roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return $roles;
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
+    }
+
     public function getPassword()
     {
         return $this->password;
     }
 
-    /**
-     * @param mixed $password
-     */
-    public function setPassword($password)
+    public function getSalt()
     {
-        $this->password = $password;
+        // leaving blank - I don't need/have a password!
     }
 
-    /**
-     * @return mixed
-     */
+    public function eraseCredentials()
+    {
+        $this->plainPassword = null;
+    }
+
     public function getEmail()
     {
         return $this->email;
     }
 
-    /**
-     * @param mixed $email
-     */
     public function setEmail($email)
     {
         $this->email = $email;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUseId()
+    public function setPassword($password)
     {
-        return $this->use_id;
+        $this->password = $password;
     }
 
-    /**
-     * @param mixed $use_id
-     */
-    public function setUseId($use_id)
+    public function getPlainPassword()
     {
-        $this->use_id = $use_id;
+        return $this->plainPassword;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getRole()
+    public function setPlainPassword($plainPassword)
     {
-        return $this->role;
+        $this->plainPassword = $plainPassword;
+        // forces the object to look "dirty" to Doctrine. Avoids
+        // Doctrine *not* saving this entity, if only plainPassword changes
+        $this->password = null;
     }
-
-    /**
-     * @param mixed $role
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-    }
-
-
 }
