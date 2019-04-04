@@ -83,7 +83,12 @@
         <h1><span class="glyphicon glyphicon-equalizer"></span> TAXO PARK </h1>
     </div>
 </div>
+{% for msg in app.session.flashBag.get('success') %}
 
+    <div class="alert alert-success">
+        {{ msg }}
+    </div>
+{% endfor %}
 
 <!-- Content -->
 <div class="container">

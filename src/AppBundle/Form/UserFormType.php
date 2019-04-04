@@ -11,6 +11,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,7 +22,16 @@ class UserFormType extends AbstractType
         $builder
             ->add('name')
             ->add('password')
-            ->add('email');
+            ->add('roles', ChoiceType::class, [
+                'choices' => [
+                    'Admin' => 'ROLE_ADMIN',
+                    'Driver' => 'ROLE_DRIVER',
+                    'Customer' => 'ROLE_CUSTOMER',
+                ],
+                'multiple' => true,
+                'expanded' => true,
+                ])
+            ->add('email', EmailType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

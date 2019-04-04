@@ -12,9 +12,16 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\User;
 use AppBundle\Form\UserFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+
+/**
+ * Class UserController
+ * @package AppBundle\Controller
+ * @Security("is_granted('ROLE_ADMIN')")
+ */
 class UserController extends Controller
 {
 
@@ -87,7 +94,7 @@ class UserController extends Controller
 
             $this->addFlash(
                 'success',
-                sprintf('User created - you (%s) - Your are amazing', $this->getUser())
+                sprintf('Genus created - you (%s) - Your are amazing', $this->getUser()->getEmail())
             );
 
             return $this->redirectToRoute('all_users');
@@ -137,7 +144,7 @@ class UserController extends Controller
      * @Route("/delete/{id}", name="delete")
      *
      */
-    public function dleteAction($id)
+    public function deleteAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('AppBundle:User')->find($id);

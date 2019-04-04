@@ -18,8 +18,9 @@ AppBundle\Entity\Orders:
 #    car: '@car_*'
 
 
-#AppBundle\Entity\User:
-#  user_{1..5}:
-#    password:  <numberBetween(1, 100000)>
-#    email: <email()>
-#    roles: <role()>
+AppBundle\Entity\User:
+  user_{1..5}:
+    password:  'iliketurtles'
+    email: <email()>
+    name: <userName()>
+    roles: ['ROLE_ADMIN']

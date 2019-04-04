@@ -81,11 +81,6 @@ class User implements UserInterface
      */
     private $roles = [];
 
-    // needed by the security system
-    public function getUsername()
-    {
-        return $this->email;
-    }
 
     public function getRoles()
     {
@@ -103,6 +98,14 @@ class User implements UserInterface
     {
         $this->roles = $roles;
     }
+
+
+    // needed by the security system
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
 
     public function getPassword()
     {

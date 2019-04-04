@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <h1 class="page-header">Welcome to our TAXOPARK
+    <h1 class="page-header">Welcome {{ app.user ? app.user.email : 'TAXOPARK' }}
         <small>Visualize Quality</small>
     </h1>
 
