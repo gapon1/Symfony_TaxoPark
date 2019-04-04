@@ -9,6 +9,8 @@ parameters:
     locale: en
 
 framework:
+    templating:
+        engines: ['twig']
     #esi: ~
     #translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
@@ -83,3 +85,12 @@ knp_paginator:
         sortable: '@KnpPaginator/Pagination/sortable_link.html.twig' # sort link template
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
 
+# app/config/config.yml
+knp_menu:
+    # use "twig: false" to disable the Twig extension and the TwigRenderer
+    twig:
+        template: KnpMenuBundle::menu.html.twig
+    #  if true, enables the helper for PHP templates
+    templating: true
+    # the renderer to use, list is also available by default
+    default_renderer: twig
