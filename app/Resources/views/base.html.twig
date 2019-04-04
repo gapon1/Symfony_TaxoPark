@@ -61,9 +61,15 @@
 
 
             <!-- Search -->
+            {% if is_granted('ROLE_USER') %}
+                <div class="navbar-form navbar-right">
+                    <a href="{{ path('security_logout') }}" type="submit" class="btn btn-default">LogOut</a>
+                </div>
+            {% else %}
             <div class="navbar-form navbar-right">
                 <a href="{{ path('security_login') }}" type="submit" class="btn btn-default">Login</a>
             </div>
+            {% endif %}
         </div>
         <!-- /.navbar-collapse -->
     </div>
