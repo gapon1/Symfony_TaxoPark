@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 /**
  * Class UserController
  * @package AppBundle\Controller
- * @Security("is_granted('ROLE_ADMIN')")
+ * @Security("is_granted('ROLE_MANAGE_TAXOPARK')")
  */
 class UserController extends Controller
 {
