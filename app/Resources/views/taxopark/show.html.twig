@@ -11,6 +11,8 @@
             <th>Type</th>
             <th>In system</th>
             <th>Discript</th>
+            {#<th>Status</th>#}
+
         </tr>
         </thead>
 
@@ -20,6 +22,15 @@
             <td>{{ car.carType }}</td>
             <td>{{ car.updatedAt|date('Y-m-d') }}</td>
             <td>{{ car.carDiscript }}</td>
+            {#<td>#}
+                {#{% if car.status == 'free' %}#}
+                    {#<b class="status_color_green">{{ car.status }}</b>#}
+                    {#<a href="" class="btn btn-primary pull-right"> Get Taxi <span#}
+                                {#class="fa fa-plus-square"></span></a>#}
+                {#{% else %}#}
+                    {#<b class="status_color_red">{{ car.status }}</b>#}
+                {#{% endif %}#}
+            {#</td>#}
         </tr>
         </tbody>
 

@@ -10,8 +10,8 @@
 
     {% block stylesheets %}
 
-            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-            <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
 
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">
 
@@ -53,10 +53,17 @@
         <!-- Navbar links -->
         <div class="collapse navbar-collapse" id="navbar">
 
+
             <ul class="nav navbar-nav">
-                <li>
-                    {{ knp_menu_render('AppBundle:Builder:mainMenu') }}
-                </li>
+                {% if is_granted('ROLE_DRIVER') %}
+                    <li> {{ knp_menu_render('AppBundle:Builder:driverMenu') }} </li>
+                {% elseif is_granted('ROLE_CUSTOMER') %}
+                    <li> {{ knp_menu_render('AppBundle:Builder:customerMenu') }} </li>
+                {% elseif is_granted('ROLE_ADMIN') %}
+                    <li> {{ knp_menu_render('AppBundle:Builder:adminMenu') }} </li>
+                {% else %}
+                    <li> {{ knp_menu_render('AppBundle:Builder:mainMenu') }} </li>
+                {% endif %}
             </ul>
 
 
@@ -66,16 +73,15 @@
                     <a href="{{ path('security_logout') }}" type="submit" class="btn btn-default">LogOut</a>
                 </div>
             {% else %}
-            <div class="navbar-form navbar-right">
-                <a href="{{ path('security_login') }}" type="submit" class="btn btn-default">Login</a>
-            </div>
+                <div class="navbar-form navbar-right">
+                    <a href="{{ path('security_login') }}" type="submit" class="btn btn-default">Login</a>
+                </div>
             {% endif %}
         </div>
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>
-
 
 
 <div class="jumbotron  top_sect feature">
@@ -108,8 +114,6 @@
         <div class="container">
             <div class="row">
                 <div class="container">
-                    <p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a>
-                    </p>
                     <p>Copyright &copy; Example.com 2019 </p>
                 </div>
             </div>

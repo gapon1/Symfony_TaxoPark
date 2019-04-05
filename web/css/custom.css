@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-blurb {
-    padding: 30px 0;
+    padding: 10px 0;
     background-color: goldenrod;
     color: black;
 }
@@ -58,4 +58,10 @@ footer{
 .form-signin input, .form-signin textarea {
 	margin-bottom: 20px;
 	display: block;
+}
+.status_color_green{
+	color: forestgreen;
+}
+.status_color_red{
+	color: red;
 }

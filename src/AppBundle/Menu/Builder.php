@@ -19,14 +19,42 @@ class Builder implements ContainerAwareInterface
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav');
+        $menu->addChild('Main', ['route' => 'homepage']);
 
+        return $menu;
+    }
+
+
+    public function driverMenu(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav');
+        $menu->addChild('Main', ['route' => 'homepage']);
+        $menu->addChild('Get Order', ['route' => 'car_list']);
+
+        return $menu;
+    }
+
+    public function customerMenu(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav navbar-nav');
+        $menu->addChild('Main', ['route' => 'homepage']);
+        $menu->addChild('Get taxi', ['route' => 'car_list']);
+
+        return $menu;
+    }
+
+    public function adminMenu(FactoryInterface $factory, array $options)
+    {
+        $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
         $menu->addChild('Main', ['route' => 'homepage']);
         $menu->addChild('Car Management', ['route' => 'car_list']);
         $menu->addChild('Orders', ['route' => 'show_orders']);
         $menu->addChild('User Management', ['route' => 'all_users']);
-
-
+        $menu->addChild('Order a car', ['route' => 'get_free_car']);
 
         return $menu;
     }

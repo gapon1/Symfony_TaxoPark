@@ -51,21 +51,7 @@ class AdminController extends Controller
 
     }
 
-    /**
-     * @Route("/get_car", name="get_free_car")
-     */
-    public function getFreeCar()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $cars = $em->getRepository('AppBundle:Car')
-            ->findAll();
 
-
-        return $this->render('taxopark/getFreeCar.html.twig', array(
-            'get_cars' => $cars
-        ));
-
-    }
 
 
 }
