@@ -8,6 +8,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Car;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,11 +35,27 @@ class Orders
 
 
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Car", inversedBy="orders")
+     * @ORM\JoinColumn(name="car_id", referencedColumnName="id")
+     */
+    private $cars;
 
+    /**
+     * @return mixed
+     */
+    public function getCars()
+    {
+        return $this->cars;
+    }
 
-
-
-
+    /**
+     * @param mixed $cars
+     */
+    public function setCars($cars)
+    {
+        $this->cars = $cars;
+    }
 
 
 
@@ -49,10 +66,6 @@ class Orders
      */
     private $user_id;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $car_id;
 
     /**
      * @return mixed
@@ -70,23 +83,6 @@ class Orders
         $this->user_id = $user_id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCarId()
-    {
-        return $this->car_id;
-    }
-
-    /**
-     * @param mixed $car_id
-     */
-    public function setCarId($car_id)
-    {
-        $this->car_id = $car_id;
-    }
-
-
 
     /**
      * @ORM\Column(type="string")
@@ -102,7 +98,6 @@ class Orders
      * @ORM\Column(type="string")
      */
     private $status;
-
 
     /**
      * @return mixed

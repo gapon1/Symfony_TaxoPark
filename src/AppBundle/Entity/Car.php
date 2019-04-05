@@ -8,6 +8,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,6 +23,22 @@ class Car
      * @ORM\Column(type="integer")
      */
     private $id;
+
+
+
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Orders", mappedBy="cars")
+     */
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
+
+
 
     /**
      * @ORM\Column(type="string")
@@ -49,29 +66,6 @@ class Car
      * @ORM\Column(type="string")
      */
     private $carImg;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
@@ -138,8 +132,6 @@ class Car
         $this->driver_id = $driver_id;
     }
 
-
-
     /**
      * @return mixed
      */
@@ -162,7 +154,13 @@ class Car
 
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
 
 }

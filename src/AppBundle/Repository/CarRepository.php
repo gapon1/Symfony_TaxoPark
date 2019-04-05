@@ -8,23 +8,23 @@
 
 namespace AppBundle\Repository;
 
-
 use AppBundle\Entity\Car;
 use Doctrine\ORM\EntityRepository;
 
 class CarRepository extends EntityRepository
 {
 
-    public function getFreeCar(Car $category)
+    public function getFreeCar()
     {
+        /**
+         * @return Car[]
+         */
         return $this->createQueryBuilder('car')
             ->andWhere('car.name = :carName')
-            ->setParameter('carName', $category)
-            ->select('car.name')
+            ->setParameter('carName', 'kihn.dee - BMW-3')
             ->getQuery()
             ->execute();
 
     }
-
 
 }

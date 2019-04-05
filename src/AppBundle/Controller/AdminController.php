@@ -17,38 +17,33 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminController extends Controller
 {
 
-
-
     /**
-     * @Route("/add_car", name="get_free_car")
+     * @Route("/add_cars", name="add_free_car")
      */
-    public function getAddCarAction()
+    public function newAction()
     {
-
-        $order = new Orders();
-        $order->setStatus('sitDown');
-        $order->setCarId(6);
-        $order->setToAddress('Popova');
-        $order->setFromAddress('perova');
-        $order->setUserId(3);
 
 
         $car = new Car();
-        $car->setDriverId(11);
-        $car->setCarType('sport');
-        $car->setCarImg('BMW-6.png');
-        $car->setCarDiscript("text");
-        $car->setName("BMW-X6");
-        $car->setOrder($order);
+        $car->setName('AquaWeaver');
+        $car->setCarType('ryan.jpeg');
+        $car->setCarDiscript('I counted 8 legs... as they wrapped around me');
+        $car->setCarImg('-1 month');
+        $car->setDriverId(rand(1, 100));
 
+        $order = new Orders();
+        $order->setUserId(rand(1, 100));
+        $order->setFromAddress('Octopodinae');
+        $order->setToAddress('Octopodinae TO');
+        $order->setStatus('free');
+        $order->setCars($car);
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($order);
-        $entityManager->persist($car);
-        $entityManager->flush();
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($order);
+        $em->persist($car);
+        $em->flush();
 
         return new Response('<html><body>Genus created!</body></html>');
-
     }
 
 

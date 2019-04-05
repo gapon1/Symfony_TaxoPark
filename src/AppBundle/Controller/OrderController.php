@@ -8,7 +8,6 @@
 
 namespace AppBundle\Controller;
 
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,7 +23,6 @@ class OrderController extends Controller
         $orders = $em->getRepository('AppBundle:Orders')
             ->findAll();
 
-
         /**
          * @var $paginator
          */
@@ -34,9 +32,7 @@ class OrderController extends Controller
             $orders,
             $request->query->getInt('page', 1),
             $request->query->getInt('limit', 3)
-
         );
-
 
         return $this->render('taxopark/orderList.html.twig', [
             'orders' => $result
@@ -66,6 +62,9 @@ class OrderController extends Controller
     }
 
 
+
+
+
     /**
      * @Route("/get_car", name="get_free_car")
      */
@@ -73,7 +72,8 @@ class OrderController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $cars = $em->getRepository('AppBundle:Car')
-            ->findAll();
+            ->getFreeCar();
+
 
 
         return $this->render('taxopark/getFreeCar.html.twig', array(

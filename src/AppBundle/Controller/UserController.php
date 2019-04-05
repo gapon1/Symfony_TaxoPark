@@ -8,14 +8,12 @@
 
 namespace AppBundle\Controller;
 
-
 use AppBundle\Entity\User;
 use AppBundle\Form\UserFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
 
 /**
  * Class UserController
@@ -42,16 +40,12 @@ class UserController extends Controller
         $result = $paginator->paginate(
             $get_users,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 4)
-
-        );
+            $request->query->getInt('limit', 4));
 
         return $this->render('user/list.html.twig', [
             'all_users' => $result
         ]);
-
     }
-
 
     /**
      * @Route("user/{userName}", name="user_show")
@@ -59,7 +53,6 @@ class UserController extends Controller
     public function showAction($userName)
     {
         $em = $this->getDoctrine()->getManager();
-
         $user = $em->getRepository('AppBundle:User')
             ->findOneBy(['name' => $userName]);
 
@@ -70,7 +63,6 @@ class UserController extends Controller
         return $this->render('user/show.html.twig', [
             'user' => $user
         ]);
-
     }
 
 
@@ -82,7 +74,6 @@ class UserController extends Controller
     public function newAction(Request $request)
     {
         $form = $this->createForm(UserFormType::class);
-
         // only handles data on POST
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -96,7 +87,6 @@ class UserController extends Controller
                 'success',
                 sprintf('Genus created - you (%s) - Your are amazing', $this->getUser()->getEmail())
             );
-
             return $this->redirectToRoute('all_users');
         }
 
@@ -104,10 +94,6 @@ class UserController extends Controller
             'userForm' => $form->createView()
         ]);
     }
-
-
-
-
 
     // ================== Update Data in form =============
 
@@ -117,16 +103,14 @@ class UserController extends Controller
     public function editAction(Request $request, User $user)
     {
         $form = $this->createForm(UserFormType::class, $user);
-
         // only handles data on POST
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $user = $form->getData();
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
-
             $this->addFlash('success', 'User updated!');
 
             return $this->redirectToRoute('all_users');
@@ -137,12 +121,10 @@ class UserController extends Controller
         ]);
     }
 
-
     // ================ DELETE USER ================
 
     /**
      * @Route("/delete/{id}", name="delete")
-     *
      */
     public function deleteAction($id)
     {
@@ -157,8 +139,6 @@ class UserController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('all_users');
-
     }
-
 
 }

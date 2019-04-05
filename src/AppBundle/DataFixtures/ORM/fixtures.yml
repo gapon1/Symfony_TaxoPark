@@ -11,11 +11,10 @@ AppBundle\Entity\Car:
 AppBundle\Entity\Orders:
   orders_{1..5}:
     UserId: <numberBetween(1, 10)>
-    CarId:  <numberBetween(1, 10)>
     FromAddress: <text(20)>
     ToAddress: <text(20)>
     Status: <status()>
-#    car: '@car_*'
+    cars: '@car_*'
 
 
 AppBundle\Entity\User:
