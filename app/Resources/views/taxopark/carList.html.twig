@@ -11,6 +11,7 @@
             <th>Car</th>
             <th>Car type</th>
             <th>Work in system</th>
+            <th>Change</th>
         </tr>
         </thead>
 
@@ -23,6 +24,11 @@
                 </td>
                 <td>{{ car.CarType }}</td>
                 <td>{{ car.updatedAt|date('Y-m-d') }}</td>
+                <td><a title="Update CAR info" href="{{ path('car_edit', {'id': car.id}) }}"
+                       class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
+                    <a title="Delete CAR" href="{{ path('delete_car', {'id': car.id }) }}"
+                       class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a>
+                </td>
             </tr>
 
         {% endfor %}

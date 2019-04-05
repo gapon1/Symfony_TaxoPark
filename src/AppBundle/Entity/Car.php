@@ -50,6 +50,15 @@ class Car
      */
     private $carImg;
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
 
 
 
