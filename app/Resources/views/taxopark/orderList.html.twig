@@ -12,6 +12,7 @@
             <th>Order ID</th>
             <th>From Address</th>
             <th>To Address</th>
+            <th>Status</th>
         </tr>
         </thead>
 
@@ -24,6 +25,7 @@
                 </td>
                 <td>{{ order.FromAddress }}</td>
                 <td>{{ order.ToAddress }}</td>
+                <td>{{ order.status }}</td>
             </tr>
 
         {% endfor %}

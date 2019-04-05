@@ -55,12 +55,14 @@
 
 
             <ul class="nav navbar-nav">
-                {% if is_granted('ROLE_DRIVER') %}
-                    <li> {{ knp_menu_render('AppBundle:Builder:driverMenu') }} </li>
+                {% if is_granted('ROLE_CUSTOMER') and is_granted('ROLE_DRIVER') %}
+                    <li> {{ knp_menu_render('AppBundle:Builder:driverCustomerMenu') }} </li>
                 {% elseif is_granted('ROLE_CUSTOMER') %}
                     <li> {{ knp_menu_render('AppBundle:Builder:customerMenu') }} </li>
                 {% elseif is_granted('ROLE_ADMIN') %}
                     <li> {{ knp_menu_render('AppBundle:Builder:adminMenu') }} </li>
+                {% elseif is_granted('ROLE_DRIVER') %}
+                    <li> {{ knp_menu_render('AppBundle:Builder:driverMenu') }} </li>
                 {% else %}
                     <li> {{ knp_menu_render('AppBundle:Builder:mainMenu') }} </li>
                 {% endif %}
