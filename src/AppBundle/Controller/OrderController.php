@@ -71,13 +71,13 @@ class OrderController extends Controller
     public function getFreeCar()
     {
         $em = $this->getDoctrine()->getManager();
-        $cars = $em->getRepository('AppBundle:Car')
+        $cars = $em->getRepository('AppBundle:Orders')
             ->getFreeCar();
 
 
 
         return $this->render('taxopark/getFreeCar.html.twig', array(
-            'get_cars' => $cars
+            'cars' => $cars
         ));
 
     }

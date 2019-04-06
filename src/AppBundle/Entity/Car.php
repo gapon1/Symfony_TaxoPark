@@ -31,12 +31,30 @@ class Car
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Orders", mappedBy="cars")
      */
-    private $products;
+    private $car_id;
 
     public function __construct()
     {
-        $this->products = new ArrayCollection();
+        $this->car_id = new ArrayCollection();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getCarId()
+    {
+        return $this->car_id;
+    }
+
+    /**
+     * @param mixed $car_id
+     */
+    public function setCarId($car_id)
+    {
+        $this->car_id = $car_id;
+    }
+
+
 
 
 
@@ -161,6 +179,10 @@ class Car
     {
         return $this->id;
     }
+
+
+
+
 
 
 }

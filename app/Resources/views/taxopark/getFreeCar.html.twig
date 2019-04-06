@@ -10,10 +10,9 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Update</th>
-            {#<th>Status</th>#}
+            <th>Car</th>
+            <th>Driver</th>
+            <th>Status</th>
 
 
         </tr>
@@ -21,14 +20,18 @@
 
         <tbody>
 
-        {% for car in get_cars %}
+        {% for car in cars %}
 
             <tr>
-                <td>
-                    <a href="{{ path('car_show',{'carName': car.name}) }}">{{ car.name }}</a>
-                </td>
-                <td>{{ car.CarType }}</td>
-                <td>{{ car.updatedAt|date('Y-m-d') }}</td>
+                {#<td>#}
+                    {#<a href="{{ path('car_show',{'carName': car.name}) }}">{{ car.name }}</a>#}
+                {#</td>#}
+
+
+                {#<td>{{ car.car_id }}</td>#}
+                {#<td>{{ car.user_id }}</td>#}
+                <td>{{ car.status }}</td>
+                {#<td>{{ car.updatedAt|date('Y-m-d') }}</td>#}
                 {#<td>#}
                     {#{% if car.status == 'free' %}#}
                         {#<b class="status_color_green">{{ car.status }}</b>#}
