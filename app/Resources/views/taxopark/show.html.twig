@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Taxo Park Show {{ car.name }}{% endblock %}
+{% block title %} Taxo Park Show {{ car.carname }}{% endblock %}
 
 {% block body %}
 
@@ -18,7 +18,7 @@
 
         <tbody>
         <tr>
-            <td>{{ car.name }}</td>
+            <td>{{ car.carname }}</td>
             <td>{{ car.carType }}</td>
             <td>{{ car.updatedAt|date('Y-m-d') }}</td>
             <td>{{ car.carDiscript }}</td>

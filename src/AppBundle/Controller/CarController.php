@@ -73,7 +73,7 @@ class CarController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $car = $em->getRepository('AppBundle:Car')
-            ->findOneBy(['name' => $carName]);
+            ->findOneBy(['car_name' => $carName]);
 
         if (!$car) {
             throw $this->createNotFoundException('Car not found');
@@ -88,17 +88,17 @@ class CarController extends Controller
     /**
      * @Route("/car/{id}/edit", name="car_edit")
      */
-    public function editAction(Request $request, Car $user)
+    public function editAction(Request $request, Car $users)
     {
-        $form = $this->createForm(CarFormType::class, $user);
+        $form = $this->createForm(CarFormType::class, $users);
 
         // only handles data on POST
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
+            $users = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
+            $em->persist($users);
             $em->flush();
 
             $this->addFlash('success', 'Car updated!');

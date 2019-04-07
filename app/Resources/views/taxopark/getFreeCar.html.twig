@@ -4,7 +4,8 @@
 
 {% block body %}
 
-<h2>Make Order</h2>
+    <h2>Make Order</h2>
+
 
 
     <table class="table table-striped">
@@ -12,35 +13,28 @@
         <tr>
             <th>Car</th>
             <th>Driver</th>
+            <th>Car id</th>
             <th>Status</th>
-
-
         </tr>
         </thead>
 
+
         <tbody>
 
-        {% for car in cars %}
+        {% for car in get_cars %}
 
             <tr>
-                {#<td>#}
-                    {#<a href="{{ path('car_show',{'carName': car.name}) }}">{{ car.name }}</a>#}
-                {#</td>#}
 
-
-                {#<td>{{ car.car_id }}</td>#}
-                {#<td>{{ car.user_id }}</td>#}
-                <td>{{ car.status }}</td>
-                {#<td>{{ car.updatedAt|date('Y-m-d') }}</td>#}
-                {#<td>#}
-                    {#{% if car.status == 'free' %}#}
-                        {#<b class="status_color_green">{{ car.status }}</b>#}
-                        {#<a href="" class="btn btn-primary pull-right"> Get Taxi <span#}
-                                    {#class="fa fa-plus-square"></span></a>#}
-                    {#{% else %}#}
-                        {#<b class="status_color_red">{{ car.status }}</b>#}
-                    {#{% endif %}#}
-                {#</td>#}
+                <td>
+                    <a href="{{ path('car_show',{'carName': car.car_name}) }}">{{ car.car_name }}</a>
+                </td>
+                <td>{{ car.name }}</td>
+                <td>{{ car.id }}</td>
+                <td>
+                    <b class="status_color_green">Free Car</b>
+                    <a href="{{ path('newOrder', {'carId': car.id, 'carName': car.car_name}) }}" class="btn btn-primary pull-right"> Get Taxi <span
+                                class="fa fa-plus-square"></span></a>
+                </td>
             </tr>
 
         {% endfor %}

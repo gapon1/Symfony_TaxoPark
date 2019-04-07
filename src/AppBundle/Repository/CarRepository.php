@@ -8,16 +8,17 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Car;
+
 use AppBundle\Entity\Orders;
 use Doctrine\ORM\EntityRepository;
 
 class CarRepository extends EntityRepository
 {
 
-    public function getFreeCar()
+    public function getCar()
     {
-
+        return $this->createQueryBuilder('car')
+            ->orderBy('car.car_name', 'ASC');
     }
 
 }

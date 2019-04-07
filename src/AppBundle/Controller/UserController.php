@@ -73,6 +73,8 @@ class UserController extends Controller
      */
     public function newAction(Request $request)
     {
+
+
         $form = $this->createForm(UserFormType::class);
         // only handles data on POST
         $form->handleRequest($request);
@@ -85,7 +87,7 @@ class UserController extends Controller
 
             $this->addFlash(
                 'success',
-                sprintf('Genus created - you (%s) - Your are amazing', $this->getUser()->getEmail())
+                sprintf('User created - you (%s) - Your are amazing', $this->getUser()->getEmail())
             );
             return $this->redirectToRoute('all_users');
         }

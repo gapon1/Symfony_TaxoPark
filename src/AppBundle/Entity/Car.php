@@ -25,13 +25,40 @@ class Car
     private $id;
 
 
+    /**
+     * One Student has One Student.
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="driver_id", referencedColumnName="id")
+     */
+    private $driver_id;
+
+    /**
+     * @return mixed
+     */
+    public function getDriverId()
+    {
+        return $this->driver_id;
+    }
+
+    /**
+     * @param mixed $driver_id
+     */
+    public function setDriverId($driver_id)
+    {
+        $this->driver_id = $driver_id;
+    }
+
+
 
 
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Orders", mappedBy="cars")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Orders", mappedBy="car")
+     *
      */
     private $car_id;
+
+
 
     public function __construct()
     {
@@ -57,22 +84,18 @@ class Car
 
 
 
-
     /**
      * @ORM\Column(type="string")
      */
-    private $name;
+    private $car_name;
+
+
 
 
     /**
      * @ORM\Column(type="string")
      */
     private $car_type;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $driver_id;
 
 
     /**
@@ -134,37 +157,30 @@ class Car
         $this->car_type = $car_type;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDriverId()
-    {
-        return $this->driver_id;
-    }
-
-    /**
-     * @param mixed $driver_id
-     */
-    public function setDriverId($driver_id)
-    {
-        $this->driver_id = $driver_id;
-    }
 
     /**
      * @return mixed
      */
-    public function getName()
+    public function getCarName()
     {
-        return $this->name;
+        return $this->car_name;
     }
 
     /**
-     * @param mixed $name
+     * @param mixed $car_name
      */
-    public function setName($name)
+    public function setCarName($car_name)
     {
-        $this->name = $name;
+        $this->car_name = $car_name;
     }
+
+
+    public function __toString()
+    {
+        return $this->getCarName();
+    }
+
+
 
     public function getUpdatedAt()
     {

@@ -19,4 +19,5 @@ class UserRepository extends EntityRepository
             ->orderBy('user.name', 'ASC');
     }
 
+
 }

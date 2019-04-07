@@ -18,11 +18,12 @@ class CarFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('carType')
-            ->add('driverId')
+            ->add('carName')
+            ->add('carImg')
             ->add('carDiscript')
-            ->add('carImg');
+            ->add('carType')
+
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

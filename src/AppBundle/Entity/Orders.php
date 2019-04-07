@@ -8,8 +8,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\Car;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,12 +24,21 @@ class Orders
     private $id;
 
     /**
-     * @return mixed
+     * @ORM\Column(type="date", nullable=true)
      */
-    public function getId()
+    private $date;
+
+
+    public function getDate()
     {
-        return $this->id;
+        return $this->date;
     }
+
+    public function setDate(\DateTime $date = null)
+    {
+        $this->date = $date;
+    }
+
 
 
 
@@ -39,24 +46,24 @@ class Orders
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Car", inversedBy="orders")
      * @ORM\JoinColumn(name="car_id", referencedColumnName="id")
      */
-    private $cars;
+    private $car;
+
 
     /**
      * @return mixed
      */
-    public function getCars()
+    public function getCar()
     {
-        return $this->cars;
+        return $this->car;
     }
 
     /**
-     * @param mixed $cars
+     * @param mixed $car
      */
-    public function setCars($cars)
+    public function setCar($car)
     {
-        $this->cars = $cars;
+        $this->car = $car;
     }
-
 
 
 
@@ -147,6 +154,13 @@ class Orders
         $this->status = $status;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
 
 
