@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Get free car in Taxi park{% endblock %}
+
+{% block body %}
+
+    <h2>Change order Status</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>From Address</th>
+            <th>To address</th>
+            <th>Status</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>{{ orders_status.id }}</td>
+            <td>{{ orders_status.fromAddress }}</td>
+            <td>{{ orders_status.toAddress }}</td>
+            <td>  {{ form_start(orderStatus) }}
+                {{ form_row(orderStatus.status) }}
+            </td>
+            <td><button type="submit"  class="btn btn-success pull-right" formnovalidate> Change Status <span
+                            class="fa fa-pencil"></span></button>
+                {{ form_end(orderStatus) }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+{% endblock %}
+
+

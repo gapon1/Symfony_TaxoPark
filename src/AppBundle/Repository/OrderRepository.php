@@ -8,13 +8,12 @@
 
 namespace AppBundle\Repository;
 
-use AppBundle\Entity\Orders;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 
 class OrderRepository extends EntityRepository
 {
-
     public function getFreeCar()
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -29,11 +28,8 @@ class OrderRepository extends EntityRepository
         $stmt = $conn->prepare($sql);
         $stmt->execute(['status' => 'finished']);
 
-        // возвращает массив массивов (т.е. набор чистых данных)
         return $stmt->fetchAll();
-
     }
-
 
     public function findFreeOrder()
     {
@@ -45,11 +41,37 @@ class OrderRepository extends EntityRepository
         WHERE ord.status = :status
         ';
         $stmt = $conn->prepare($sql);
-        $stmt->execute(['status' => 'waiting']);
+        $stmt->execute(['status' => 'call']);
 
         // возвращает массив массивов (т.е. набор чистых данных)
         return $stmt->fetchAll();
     }
+
+
+    public function findDriverOrders()
+    {
+
+        $session = new Session();
+        $userId = $session->get('userId');
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT   orders.id, orders.status, orders.from_address, orders.to_address 
+        FROM orders
+        JOIN user
+        ON orders.user_id = user.id
+        WHERE orders.user_id = :uId
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['uId' => $userId]);
+
+
+
+        // возвращает массив массивов (т.е. набор чистых данных)
+        return $stmt->fetchAll();
+    }
+
 }
 
 

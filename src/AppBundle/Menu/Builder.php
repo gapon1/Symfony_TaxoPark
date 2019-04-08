@@ -55,7 +55,7 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('Orders', ['route' => 'show_orders']);
         $menu->addChild('User Management', ['route' => 'all_users']);
         $menu->addChild('Order a car', ['route' => 'get_free_car']);
-        $menu->addChild('Driver order lost', ['route' => 'get_free_car']);
+        $menu->addChild('Take Order', ['route' => 'ordersForDriver']);
 
         return $menu;
     }

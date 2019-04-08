@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Get free car in Taxi park{% endblock %}
+
+{% block body %}
+
+    <h2>Accepted orders</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>From Address</th>
+            <th>To address</th>
+            <th>Status</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr>
+            <td>{{ orders.id }}</td>
+            <td>{{ orders.fromAddress }}</td>
+            <td>{{ orders.toAddress }}</td>
+            <td>{{ orders.status }}</td>
+
+        </tr>
+        </tbody>
+    </table>
+
+
+
+
+{% endblock %}
+
+
