@@ -8,6 +8,8 @@
 
 namespace AppBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,6 +45,7 @@ class Orders
 
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Car", inversedBy="orders")
      * @ORM\JoinColumn(name="car_id", referencedColumnName="id")
      */
@@ -66,29 +69,35 @@ class Orders
     }
 
 
-
-
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="orders")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $user_id;
-
+    private $user_order;
 
     /**
      * @return mixed
      */
-    public function getUserId()
+    public function getUserOrder()
     {
-        return $this->user_id;
+        return $this->user_order;
     }
 
+
+
     /**
-     * @param mixed $user_id
+     * @param mixed $user_order
      */
-    public function setUserId($user_id)
+    public function setUserOrder(User $user_order)
     {
-        $this->user_id = $user_id;
+        $this->user_order = $user_order;
     }
+
+
+
+
+
+
 
 
     /**

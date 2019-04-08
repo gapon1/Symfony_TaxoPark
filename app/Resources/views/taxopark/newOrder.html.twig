@@ -7,16 +7,15 @@
                 <h1>Create Order</h1>
 
 
-                <p><b> Name</b></p>
-                <span class="user_name form-control">{{ app.user.username }}</span>
 
                 {{ form_start(orderForm) }}
 
+                {{ form_row(orderForm.userOrder) }}
                 {{ form_row(orderForm.car) }}
                 {{ form_row(orderForm.fromAddress) }}
                 {{ form_row(orderForm.toAddress) }}
                 {{ form_row(orderForm.date) }}
-                {{ form_row(orderForm.userId) }}
+
 
 
                 <button type="submit" class="btn btn-primary" formnovalidate>Save</button>

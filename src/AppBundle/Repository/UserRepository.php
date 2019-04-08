@@ -9,15 +9,39 @@
 namespace AppBundle\Repository;
 
 
+
+use AppBundle\Controller\OrderController;
+use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
+use Faker\Provider\UserAgent;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserRepository extends EntityRepository
 {
+    public $user;
+
     public function createAlphabeticalQueryBuilder()
     {
         return $this->createQueryBuilder('user')
             ->orderBy('user.name', 'ASC');
     }
+
+
+
+
+
+    public function getUserId()
+    {
+        $session = new Session();
+        $userId = $session->get('userId');
+
+        return $this->createQueryBuilder('users')
+            ->where('users.id = :userId')
+            ->setParameter('userId', $userId);
+    }
+
+
+
 
 
 }

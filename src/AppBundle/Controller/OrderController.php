@@ -10,13 +10,17 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Car;
 use AppBundle\Entity\Orders;
+use AppBundle\Entity\User;
 use AppBundle\Form\OrderFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class OrderController extends Controller
 {
+
+
     /**
      * @Route("/orders", name="show_orders")
      */
@@ -61,12 +65,15 @@ class OrderController extends Controller
     }
 
 
-
     /**
      * @Route("/get_car", name="get_free_car")
      */
     public function getFreeCar()
     {
+        $session = new Session();
+        $userId = $this->getUser()->getId();
+        $session->set('userId', $userId);
+
         $em = $this->getDoctrine()->getManager();
         $cars = $em->getRepository('AppBundle:Orders')
             ->getFreeCar();
@@ -76,7 +83,6 @@ class OrderController extends Controller
         ));
 
     }
-
 
 
     /**
@@ -96,6 +102,8 @@ class OrderController extends Controller
 
         //==================================================
 
+        $userName = $this->getUser();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $carId = $form->getData();
             $em = $this->getDoctrine()->getManager();
@@ -112,10 +120,14 @@ class OrderController extends Controller
         return $this->render('taxopark/newOrder.html.twig', [
             'orderForm' => $form->createView(),
             'new_order' => $new_order,
-            'order_car_name' => $order_car_name
+            'order_car_name' => $order_car_name,
+            'user_name' => $userName
         ]);
 
     }
+
+
+
 
 
 

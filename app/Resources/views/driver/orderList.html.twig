@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Taxo Park Show{% endblock %}
+
+{% block body %}
+
+    <h2>Find free Order</h2>
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Order Id</th>
+            <th>From Address</th>
+            <th>To Address</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.from_address }}</td>
+            <td>{{ order.to_address }}</td>
+            <td>{{ order.status }}</td>
+        </tr>
+
+        {% endfor %}
+
+
+
+        </tbody>
+
+    </table>
+
+    <br>
+
+{% endblock %}

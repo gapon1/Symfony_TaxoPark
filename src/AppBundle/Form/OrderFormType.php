@@ -13,9 +13,18 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class OrderFormType extends AbstractType
 {
+
+    public function getUserId(UserInterface $user)
+    {
+        $userEmail = $user->getUsername();
+
+        return $userEmail;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
@@ -30,13 +39,16 @@ class OrderFormType extends AbstractType
             ->add('status', HiddenType::class, [
                 'data' => 'waiting'
             ])
-            ->add('userId', EntityType::class, [
-                'data' => User::class,
+            ->add('userOrder', EntityType::class, [
+                'label' => 'Your Email',
+                'class' => User::class,
                 'query_builder' => function(UserRepository $repository){
-                return $repository->findOneBy([]);
+                return $repository->getUserId();
                 }
-
             ])
+
+
+
             ->add('car', EntityType::class, [
                 'placeholder' => 'Choose a Car',
                 'class' => Car::class,

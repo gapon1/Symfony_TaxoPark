@@ -8,6 +8,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Orders;
 use Doctrine\ORM\EntityRepository;
 
 
@@ -31,6 +32,23 @@ class OrderRepository extends EntityRepository
         // возвращает массив массивов (т.е. набор чистых данных)
         return $stmt->fetchAll();
 
+    }
+
+
+    public function findFreeOrder()
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT  ord.status, ord.id, ord.from_address, ord.to_address
+        FROM orders ord
+        WHERE ord.status = :status
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute(['status' => 'waiting']);
+
+        // возвращает массив массивов (т.е. набор чистых данных)
+        return $stmt->fetchAll();
     }
 }
 

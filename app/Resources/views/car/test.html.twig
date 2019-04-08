@@ -1,8 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Taxo Park Show {{ new_order.id }}{% endblock %}
+{% block title %} Taxo Park Show{% endblock %}
 
 {% block body %}
+
+
+
+
+    <p>Username: {{ app.user.username }}</p>
+    {% if app.debug %}
+        <p>Request method: {{ app.request.method }}</p>
+        <p>Application Environment: {{ app.environment }}</p>
+    {% endif %}
 
     <table class="table table-striped">
         <thead>
@@ -13,7 +22,8 @@
 
         <tbody>
         <tr>
-            <td>{{ new_order.id }}</td>
+
+            <td>{{  }}</td>
 
 
         </tr>

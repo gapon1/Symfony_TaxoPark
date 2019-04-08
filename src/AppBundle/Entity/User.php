@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -9,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
  * @UniqueEntity(fields={"email"}, message="It looks like your already have an account!")
  */
@@ -59,6 +60,27 @@ class User implements UserInterface
     }
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Orders", mappedBy="user_order")
+     *
+     */
+    private $orders;
+
+    public function __construct()
+    {
+        $this->orders = new ArrayCollection();
+    }
+
+    /**
+     * @return ArrayCollection|Orders[]
+     */
+    public function getOrders()
+    {
+        return $this->orders;
+    }
+
+
+
+    /**
      * The encoded password
      *
      * @ORM\Column(type="string")
@@ -103,6 +125,12 @@ class User implements UserInterface
         return $this->email;
     }
 
+    public function __toString()
+    {
+        return $this->getUsername();
+    }
+
+
 
     public function getPassword()
     {
@@ -146,4 +174,6 @@ class User implements UserInterface
         // Doctrine *not* saving this entity, if only plainPassword changes
         $this->password = null;
     }
+
+
 }
