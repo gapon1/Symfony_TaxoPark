@@ -42,6 +42,7 @@
             <th>Order Id</th>
             <th>From Address</th>
             <th>To Address</th>
+            <th>Car name</th>
             <th>Status</th>
         </tr>
         </thead>
@@ -52,9 +53,8 @@
                 <td>{{ dr_order.id }}</td>
                 <td>{{ dr_order.from_address }}</td>
                 <td>{{ dr_order.to_address }}</td>
-                <td>{{ dr_order.status }}
-
-                </td>
+                <td>{{ dr_order.car_name }}</td>
+                <td>{{ dr_order.status }}</td>
                 <td> <a href="{{ path('shangeStatus', {'id': dr_order.id}) }}"  class="btn btn-success pull-right" formnovalidate onclick="openForm()">{{ dr_order.id }} Change Status <span
                                 class="fa fa-plus-square"></span></a></td>
 

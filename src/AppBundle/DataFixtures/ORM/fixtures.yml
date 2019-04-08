@@ -1,20 +1,11 @@
-AppBundle\Entity\Car:
-  car_{1..5}:
-    name: <username()> - <carName()>
-    carDiscript: <text(20)>
-    carImg: <carName()>.png
-    carType: <carType()>
-    driverId: <numberBetween(10, 1000)>
-#    order: '@orders_*'
-
-
 AppBundle\Entity\Orders:
   orders_{1..5}:
-    UserId: <numberBetween(1, 10)>
     FromAddress: <text(20)>
     ToAddress: <text(20)>
     Status: <status()>
-    cars: '@car_*'
+    Date: <dateTimeBetween('-6 months', 'now')>
+    UserOrder: '@user_*'
+    car: '@car_*'
 
 
 AppBundle\Entity\User:
@@ -23,3 +14,12 @@ AppBundle\Entity\User:
     email: <email()>
     name: <userName()>
     roles: ['ROLE_ADMIN']
+
+
+AppBundle\Entity\Car:
+  car_{1..5}:
+    carName: <username()> - <carName()>
+    carDiscript: <text(20)>
+    carImg: <carName()>.png
+    carType: <carType()>
+

@@ -78,6 +78,7 @@ class OrderController extends Controller
         $cars = $em->getRepository('AppBundle:Orders')
             ->getFreeCar();
 
+
         return $this->render('taxopark/getFreeCar.html.twig', array(
             'get_cars' => $cars,
         ));
@@ -102,12 +103,20 @@ class OrderController extends Controller
 
         //==================================================
 
+
+        $change_status = $em->getRepository('AppBundle:Orders')
+            ->findOneBy(['id' => $carId]);
+        $change_status->setStatus('call');
+
         $userName = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+
             $carId = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($carId);
+            $em->persist($change_status);
             $em->flush();
 
             $this->addFlash(

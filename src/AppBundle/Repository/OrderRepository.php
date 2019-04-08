@@ -19,17 +19,19 @@ class OrderRepository extends EntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-        SELECT  ord.status, car.id, car.car_name, user.name
+        SELECT  ord.status, car.id, car.car_name, user.name, ord.id
         FROM orders ord
         JOIN car ON car.id = ord.car_id
         JOIN user ON car.driver_id = user.id
-        WHERE ord.status = :status AND user.roles = \'["ROLE_DRIVER"]\'
+        WHERE ord.status = :status AND  user.roles = \'["ROLE_ADMIN"]\'
         ';
         $stmt = $conn->prepare($sql);
         $stmt->execute(['status' => 'finished']);
 
         return $stmt->fetchAll();
     }
+
+
 
     public function findFreeOrder()
     {
@@ -57,10 +59,12 @@ class OrderRepository extends EntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-        SELECT   orders.id, orders.status, orders.from_address, orders.to_address 
+        SELECT   orders.id, orders.status, orders.from_address, orders.to_address, car.car_name 
         FROM orders
         JOIN user
         ON orders.user_id = user.id
+        JOIN car
+        ON orders.car_id = car.id
         WHERE orders.user_id = :uId
         ';
         $stmt = $conn->prepare($sql);

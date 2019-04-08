@@ -26,7 +26,7 @@ class Car
 
 
     /**
-     * One Student has One Student.
+     *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(name="driver_id", referencedColumnName="id")
      */
