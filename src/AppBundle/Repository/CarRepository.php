@@ -18,6 +18,9 @@ class CarRepository extends EntityRepository
     public function getCar()
     {
         return $this->createQueryBuilder('car')
+            ->leftJoin('car.car_id', 'carId')
+            ->where('carId.status = :status')
+            ->setParameter('status','finished')
             ->orderBy('car.car_name', 'ASC');
     }
 

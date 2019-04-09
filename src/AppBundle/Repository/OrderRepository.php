@@ -19,18 +19,17 @@ class OrderRepository extends EntityRepository
         $conn = $this->getEntityManager()->getConnection();
 
         $sql = '
-        SELECT  ord.status, car.id, car.car_name, user.name, ord.id
-        FROM orders ord
-        JOIN car ON car.id = ord.car_id
-        JOIN user ON car.driver_id = user.id
-        WHERE ord.status = :status AND  user.roles = \'["ROLE_ADMIN"]\'
+        SELECT DISTINCT user.name, ord.car_id,  car.car_name,  ord.status, ord.id
+            FROM orders ord
+                JOIN car ON ord.car_id = car.id
+                JOIN user ON user.id = car.driver_id
+            WHERE ord.status = :status
         ';
         $stmt = $conn->prepare($sql);
         $stmt->execute(['status' => 'finished']);
 
         return $stmt->fetchAll();
     }
-
 
 
     public function findFreeOrder()
@@ -65,11 +64,10 @@ class OrderRepository extends EntityRepository
         ON orders.user_id = user.id
         JOIN car
         ON orders.car_id = car.id
-        WHERE orders.user_id = :uId
+        WHERE orders.driver_id = :uId
         ';
         $stmt = $conn->prepare($sql);
         $stmt->execute(['uId' => $userId]);
-
 
 
         // возвращает массив массивов (т.е. набор чистых данных)

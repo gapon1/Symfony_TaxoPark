@@ -11,9 +11,15 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Orders;
 use AppBundle\Form\DriverForType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+
+/**
+ * Class DriverController
+ * @package AppBundle\Controller
+ */
 class DriverController extends Controller
 {
 
@@ -48,6 +54,7 @@ class DriverController extends Controller
         $change_status = $em->getRepository('AppBundle:Orders')
             ->findOneBy(['id' => $id]);
         $change_status->setStatus('waiting');
+        $change_status->setDriverIdOrd($this->getUser()->getId());
 
         $this->addFlash('success', 'You took this order to work!');
 
@@ -78,7 +85,6 @@ class DriverController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Status updated!');
-
             return $this->redirectToRoute('ordersForDriver');
 
         }

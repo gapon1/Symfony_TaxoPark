@@ -13,16 +13,21 @@ use AppBundle\Entity\Orders;
 use AppBundle\Entity\User;
 use AppBundle\Form\OrderFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+
+/**
+ * Class OrderController
+ * @package AppBundle\Controller
+ */
 class OrderController extends Controller
 {
-
-
     /**
      * @Route("/orders", name="show_orders")
+     *@Security("is_granted('ROLE_ADMIN')")
      */
     public function getOrderAction(Request $request)
     {
@@ -37,7 +42,7 @@ class OrderController extends Controller
         $result = $paginator->paginate(
             $orders,
             $request->query->getInt('page', 1),
-            $request->query->getInt('limit', 3)
+            $request->query->getInt('limit', 5)
         );
 
         return $this->render('taxopark/orderList.html.twig', [
@@ -49,6 +54,7 @@ class OrderController extends Controller
 
     /**
      * @Route("order/{orderId}", name="order_show")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function showAction($orderId)
     {
@@ -87,26 +93,26 @@ class OrderController extends Controller
 
 
     /**
-     * @Route("/new_order/{carId}/{carName}", name="newOrder")
+     * @Route("/new_order/{carName}/{ordId}", name="newOrder")
      */
-    public function getFreeCarNewOrder(Request $request, $carId, $carName)
+    public function getFreeCarNewOrder(Request $request, $carName, $ordId)
     {
         $form = $this->createForm(OrderFormType::class);
         $form->handleRequest($request);
         $em = $this->getDoctrine()->getManager();
 
         //============   Get choos Car Id AND Car Name =====
-        $new_order = $em->getRepository('AppBundle:Car')
-            ->findOneBy(['id' => $carId]);
         $order_car_name = $em->getRepository('AppBundle:Car')
             ->findOneBy(['car_name' => $carName]);
 
         //==================================================
 
 
+
         $change_status = $em->getRepository('AppBundle:Orders')
-            ->findOneBy(['id' => $carId]);
+            ->findOneBy(['id' => $ordId]);
         $change_status->setStatus('call');
+
 
         $userName = $this->getUser();
 
@@ -128,7 +134,6 @@ class OrderController extends Controller
 
         return $this->render('taxopark/newOrder.html.twig', [
             'orderForm' => $form->createView(),
-            'new_order' => $new_order,
             'order_car_name' => $order_car_name,
             'user_name' => $userName
         ]);

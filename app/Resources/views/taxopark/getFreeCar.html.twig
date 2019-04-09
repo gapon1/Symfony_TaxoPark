@@ -13,7 +13,6 @@
         <tr>
             <th>Car</th>
             <th>Driver</th>
-            <th>Car id</th>
             <th>Status</th>
         </tr>
         </thead>
@@ -29,10 +28,10 @@
                     <a href="{{ path('car_show',{'carName': car.car_name}) }}">{{ car.car_name }}</a>
                 </td>
                 <td>{{ car.name }}</td>
-                <td>{{ car.id }}</td>
+
                 <td>
                     <b class="status_color_green">Free Car</b>
-                    <a href="{{ path('newOrder', {'carId': car.id, 'carName': car.car_name}) }}" class="btn btn-primary pull-right"> Get Taxi <span
+                    <a href="{{ path('newOrder', {'carName': car.car_name, 'ordId': car.id}) }}" class="btn btn-primary pull-right"> Get Taxi <span
                                 class="fa fa-plus-square"></span></a>
                 </td>
             </tr>
@@ -42,6 +41,7 @@
         </tbody>
 
     </table>
+
 
 
 

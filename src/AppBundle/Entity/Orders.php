@@ -31,16 +31,29 @@ class Orders
     private $date;
 
 
-    public function getDate()
+
+    /**
+     * @ORM\Column(type="string")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(name="driver_id", referencedColumnName="id"))
+     */
+    private $driver_id;
+
+    /**
+     * @return mixed
+     */
+    public function getDriverIdOrd()
     {
-        return $this->date;
+        return $this->driver_id;
     }
 
-    public function setDate(\DateTime $date = null)
+    /**
+     * @param mixed $driver_id
+     */
+    public function setDriverIdOrd($driver_id)
     {
-        $this->date = $date;
+        $this->driver_id = $driver_id;
     }
-
 
 
 
@@ -82,8 +95,6 @@ class Orders
     {
         return $this->user_order;
     }
-
-
 
     /**
      * @param mixed $user_order
@@ -169,6 +180,17 @@ class Orders
     public function getId()
     {
         return $this->id;
+    }
+
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function setDate(\DateTime $date = null)
+    {
+        $this->date = $date;
     }
 
 

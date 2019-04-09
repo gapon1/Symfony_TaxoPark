@@ -14,7 +14,6 @@ class DriverForType extends AbstractType
     {
         $builder
             ->add('status', ChoiceType::class, [
-                'placeholder' => 'Change status',
                 'label' => false,
                 'choices' => [
                     'Waiting' => 'waiting',

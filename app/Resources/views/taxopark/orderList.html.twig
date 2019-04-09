@@ -12,6 +12,8 @@
             <th>Order ID</th>
             <th>From Address</th>
             <th>To Address</th>
+            <th>Car</th>
+            <th>Date</th>
             <th>Status</th>
         </tr>
         </thead>
@@ -25,6 +27,8 @@
                 </td>
                 <td>{{ order.FromAddress }}</td>
                 <td>{{ order.ToAddress }}</td>
+                <td>{{ order.Car }}</td>
+                <td>{{ order.Date|date('Y-m-d') }}</td>
                 <td>{{ order.status }}</td>
             </tr>
 

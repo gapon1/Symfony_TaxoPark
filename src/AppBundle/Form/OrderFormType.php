@@ -37,26 +37,25 @@ class OrderFormType extends AbstractType
                 'html5' => false,
             ])
             ->add('status', HiddenType::class, [
-                'data' => 'waiting'
+                'data' => 'call'
             ])
             ->add('userOrder', EntityType::class, [
                 'label' => 'Your Email',
                 'class' => User::class,
-                'query_builder' => function(UserRepository $repository){
-                return $repository->getUserId();
+                'query_builder' => function (UserRepository $repository) {
+                    return $repository->getUserId();
                 }
             ])
-
-
-
+            ->add('driverIdOrd', HiddenType::class, [
+                'data' => 1
+            ])
             ->add('car', EntityType::class, [
                 'placeholder' => 'Choose a Car',
                 'class' => Car::class,
-                'query_builder' => function(CarRepository $repository){
-                return $repository->getCar();
+                'query_builder' => function (CarRepository $repository) {
+                    return $repository->getCar();
                 }
-            ])
-        ;
+            ]);
 
 
     }
