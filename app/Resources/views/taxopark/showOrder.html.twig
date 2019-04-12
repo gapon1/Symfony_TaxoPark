@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Taxo Park Show {{ order.id }}{% endblock %}
+
+{% block body %}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Order Id</th>
+            <th>From Address</th>
+            <th>To Address</th>
+            <th>Order Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.FromAddress }}</td>
+            <td>{{ order.ToAddress }}</td>
+            <td>{{ order.Status }}</td>
+
+        </tr>
+        </tbody>
+
+    </table>
+
+    <br>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+AppBundle\Entity\Orders:
+  orders_{1..5}:
+    FromAddress: <text(20)>
+    ToAddress: <text(20)>
+    Status: <status()>
+    Date: <dateTimeBetween('-6 months', 'now')>
+    UserOrder: '@user_*'
+    car: '@car_*'
+
+
+AppBundle\Entity\User:
+  user_{1..5}:
+    password:  'iliketurtles'
+    email: <email()>
+    name: <userName()>
+    roles: ['ROLE_ADMIN']
+
+
+AppBundle\Entity\Car:
+  car_{1..5}:
+    carName: <username()> - <carName()>
+    carDiscript: <text(20)>
+    carImg: <carName()>.png
+    carType: <carType()>
+

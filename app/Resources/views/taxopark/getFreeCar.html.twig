@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Get free car in Taxi park{% endblock %}
+
+{% block body %}
+
+    <h2>Make Order</h2>
+
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Car</th>
+            <th>Driver</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+
+        <tbody>
+
+        {% for car in get_cars %}
+
+            <tr>
+
+                <td>
+                    <a href="{{ path('car_show',{'carName': car.car_name}) }}">{{ car.car_name }}</a>
+                </td>
+                <td>{{ car.name }}</td>
+
+                <td>
+                    <b class="status_color_green">Free Car</b>
+                    <a href="{{ path('newOrder', {'carName': car.car_name, 'ordId': car.id}) }}" class="btn btn-primary pull-right"> Get Taxi <span
+                                class="fa fa-plus-square"></span></a>
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+
+
+
+{% endblock %}

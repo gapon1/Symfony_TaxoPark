@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Taxo Park Show{% endblock %}
+
+{% block body %}
+
+
+
+
+    <p>Username: {{ app.user.username }}</p>
+    {% if app.debug %}
+        <p>Request method: {{ app.request.method }}</p>
+        <p>Application Environment: {{ app.environment }}</p>
+    {% endif %}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Order Id</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+
+            <td>{{  }}</td>
+
+
+        </tr>
+        </tbody>
+
+    </table>
+
+    <br>
+
+{% endblock %}

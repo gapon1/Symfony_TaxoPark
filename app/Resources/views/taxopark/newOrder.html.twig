@@ -1,0 +1,52 @@
+{% extends 'user/formLayout.html.twig' %}
+
+{% block body %}
+    <div class="container cont">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Create Order</h1>
+
+
+
+                {{ form_start(orderForm) }}
+
+                {{ form_row(orderForm.userOrder) }}
+                {{ form_row(orderForm.car) }}
+                {{ form_row(orderForm.fromAddress) }}
+                {{ form_row(orderForm.toAddress) }}
+                {{ form_row(orderForm.date) }}
+
+
+
+                <button type="submit" class="btn btn-primary" formnovalidate>Save</button>
+
+                {{ form_end(orderForm) }}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet"
+          href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.css">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+{% endblock %}

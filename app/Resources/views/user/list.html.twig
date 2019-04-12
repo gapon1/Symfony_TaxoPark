@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Cars List {% endblock %}
+
+{% block body %}
+
+    <h2 class="genus-name">User List</h2>
+
+    <div class="pull-right" style="margin-bottom: 10px; margin-top: 20px;">
+        <a href="{{ path('user_new_create') }}" class="btn btn-primary pull-right">Add User <span
+                    class="fa fa-plus-circle"></span></a>
+    </div>
+    <br/>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Change</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for user in all_users %}
+
+            <tr>
+                <td>
+                    <a href="{{ path('user_show',{'userName': user.name}) }}">{{ user.name }}</a>
+                </td>
+
+                <td>{{ user.email }}</td>
+                <td>
+                    <a title="Update user info" href="{{ path('user_edit', {'id': user.id}) }}"
+                       class="btn btn-xs btn-success"><span class="fa fa-pencil"></span></a>
+                    <a title="Delete USER" href="{{ path('delete', {'id': user.id}) }}"
+                       class="btn btn-xs btn-danger"><span class="fa fa-trash"></span></a>
+                </td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+    <div class="navigation text-center">
+        {{ knp_pagination_render(all_users) }}
+    </div>
+
+
+{% endblock %}

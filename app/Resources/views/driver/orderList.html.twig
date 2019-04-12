@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Taxo Park Show{% endblock %}
+
+{% block body %}
+
+    <h2>Find free Order</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Order Id</th>
+            <th>From Address</th>
+            <th>To Address</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.from_address }}</td>
+            <td>{{ order.to_address }}</td>
+            <td>{{ order.status }}
+                <a href="{{ path('take_order', {'id': order.id}) }}" class="btn btn-primary pull-right">Take Order <span
+                            class="fa fa-plus-square"></span></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+<br/>
+    <hr>
+
+    <h2>Yours All Orders</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Order Id</th>
+            <th>From Address</th>
+            <th>To Address</th>
+            <th>Car name</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for dr_order in driver_orders %}
+            <tr>
+                <td>{{ dr_order.id }}</td>
+                <td>{{ dr_order.from_address }}</td>
+                <td>{{ dr_order.to_address }}</td>
+                <td>{{ dr_order.car_name }}</td>
+                <td>{{ dr_order.status }}</td>
+                <td> <a href="{{ path('shangeStatus', {'id': dr_order.id}) }}"  class="btn btn-success pull-right" >Change Status <span
+                                class="fa fa-plus-square"></span></a></td>
+
+            </tr>
+        {% endfor %}
+
+        <tr>
+       <tr>
+
+        </tr>
+
+
+        </tbody>
+    </table>
+
+
+
+
+
+{% endblock %}
+

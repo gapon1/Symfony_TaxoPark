@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Taxo Park Home {% endblock %}
+
+{% block body %}
+
+    <h1 class="page-header">Welcome {{ app.user ? app.user.email : 'TAXOPARK' }}
+        <small>Visualize Quality</small>
+    </h1>
+
+{% endblock %}
