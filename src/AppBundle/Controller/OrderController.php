@@ -81,7 +81,7 @@ class OrderController extends Controller
         $session->set('userId', $userId);
 
         $em = $this->getDoctrine()->getManager();
-        $cars = $em->getRepository('AppBundle:Orders')
+        $cars = $em->getRepository('AppBundle:Car')
             ->getFreeCar();
 
 
@@ -106,6 +106,7 @@ class OrderController extends Controller
             ->findOneBy(['car_name' => $carName]);
 
         //==================================================
+
 
 
 
