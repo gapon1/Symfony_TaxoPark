@@ -20,8 +20,8 @@
         {% for order in orders %}
         <tr>
             <td>{{ order.id }}</td>
-            <td>{{ order.from_address }}</td>
-            <td>{{ order.to_address }}</td>
+            <td>{{ order.fromAddress }}</td>
+            <td>{{ order.toAddress }}</td>
             <td>{{ order.status }}
                 <a href="{{ path('take_order', {'id': order.id}) }}" class="btn btn-primary pull-right">Take Order <span
                             class="fa fa-plus-square"></span></a>
@@ -51,8 +51,8 @@
         {% for dr_order in driver_orders %}
             <tr>
                 <td>{{ dr_order.id }}</td>
-                <td>{{ dr_order.from_address }}</td>
-                <td>{{ dr_order.to_address }}</td>
+                <td>{{ dr_order.fromAddress }}</td>
+                <td>{{ dr_order.toAddress }}</td>
                 <td>{{ dr_order.car_name }}</td>
                 <td>{{ dr_order.status }}</td>
                 <td> <a href="{{ path('shangeStatus', {'id': dr_order.id}) }}"  class="btn btn-success pull-right" >Change Status <span
@@ -60,11 +60,6 @@
 
             </tr>
         {% endfor %}
-
-        <tr>
-       <tr>
-
-        </tr>
 
 
         </tbody>

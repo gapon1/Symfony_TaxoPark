@@ -8,12 +8,7 @@
 
 namespace AppBundle\Repository;
 
-
-
-use AppBundle\Controller\OrderController;
-use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
-use Faker\Provider\UserAgent;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class UserRepository extends EntityRepository
@@ -26,10 +21,6 @@ class UserRepository extends EntityRepository
             ->orderBy('user.name', 'ASC');
     }
 
-
-
-
-
     public function getUserId()
     {
         $session = new Session();
@@ -39,9 +30,6 @@ class UserRepository extends EntityRepository
             ->where('users.id = :userId')
             ->setParameter('userId', $userId);
     }
-
-
-
 
 
 }

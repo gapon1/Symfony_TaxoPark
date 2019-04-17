@@ -84,7 +84,6 @@ class OrderController extends Controller
         $cars = $em->getRepository('AppBundle:Car')
             ->getFreeCar();
 
-
         return $this->render('taxopark/getFreeCar.html.twig', array(
             'get_cars' => $cars,
         ));
@@ -106,8 +105,6 @@ class OrderController extends Controller
             ->findOneBy(['car_name' => $carName]);
 
         //==================================================
-
-
 
 
         $change_status = $em->getRepository('AppBundle:Orders')
