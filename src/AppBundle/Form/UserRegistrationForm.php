@@ -18,9 +18,9 @@ class UserRegistrationForm extends AbstractType
         $builder
             ->add('email', EmailType::class)
             ->add('name', EmailType::class)
-            ->add('plainPassword', RepeatedType::class,[
+            ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class
-                ])
+            ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [
                     'Driver' => 'ROLE_DRIVER',
@@ -29,7 +29,6 @@ class UserRegistrationForm extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ]);
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -37,8 +36,6 @@ class UserRegistrationForm extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class
         ]);
-
     }
-
 
 }

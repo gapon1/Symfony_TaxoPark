@@ -8,16 +8,12 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Car;
-use AppBundle\Entity\Orders;
-use AppBundle\Entity\User;
 use AppBundle\Form\OrderFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
-
 
 /**
  * Class OrderController
@@ -27,14 +23,13 @@ class OrderController extends Controller
 {
     /**
      * @Route("/orders", name="show_orders")
-     *@Security("is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('ROLE_ADMIN')")
      */
     public function getOrderAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
         $orders = $em->getRepository('AppBundle:Orders')
             ->findAll();
-
 
         /*** @var $paginator */
         $paginator = $this->get('knp_paginator');
@@ -48,9 +43,7 @@ class OrderController extends Controller
         return $this->render('taxopark/orderList.html.twig', [
             'orders' => $result
         ]);
-
     }
-
 
     /**
      * @Route("order/{orderId}", name="order_show")
@@ -67,9 +60,7 @@ class OrderController extends Controller
         return $this->render('taxopark/showOrder.html.twig', [
             'order' => $order
         ]);
-
     }
-
 
     /**
      * @Route("/get_car", name="get_free_car")
@@ -87,9 +78,7 @@ class OrderController extends Controller
         return $this->render('taxopark/getFreeCar.html.twig', array(
             'get_cars' => $cars,
         ));
-
     }
-
 
     /**
      * @Route("/new_order/{carName}/{ordId}", name="newOrder")
@@ -104,18 +93,13 @@ class OrderController extends Controller
         $order_car_name = $em->getRepository('AppBundle:Car')
             ->findOneBy(['car_name' => $carName]);
 
-        //==================================================
-
-
         $change_status = $em->getRepository('AppBundle:Orders')
             ->findOneBy(['id' => $ordId]);
         $change_status->setStatus('call');
 
-
         $userName = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
-
 
             $carId = $form->getData();
             $em = $this->getDoctrine()->getManager();
@@ -137,10 +121,5 @@ class OrderController extends Controller
         ]);
 
     }
-
-
-
-
-
 
 }

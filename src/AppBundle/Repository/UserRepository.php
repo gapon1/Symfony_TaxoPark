@@ -31,5 +31,4 @@ class UserRepository extends EntityRepository
             ->setParameter('userId', $userId);
     }
 
-
 }

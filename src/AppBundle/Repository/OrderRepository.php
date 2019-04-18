@@ -11,10 +11,8 @@ namespace AppBundle\Repository;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-
 class OrderRepository extends EntityRepository
 {
-
     public function findFreeOrder()
     {
         return $this->createQueryBuilder('orders')
@@ -25,7 +23,6 @@ class OrderRepository extends EntityRepository
             ->getQuery()
             ->execute();
     }
-
 
     public function findDriverOrders()
     {

@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form;
 
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,8 +20,6 @@ class DriverForType extends AbstractType
                     'Finished' => 'finished',
                 ]
             ]);
-
-
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -30,7 +27,6 @@ class DriverForType extends AbstractType
         $resolver->setDefaults([
             'data_class' => 'AppBundle\Entity\Orders'
         ]);
-
     }
 
 }

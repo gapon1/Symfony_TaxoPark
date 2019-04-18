@@ -12,7 +12,6 @@ use Doctrine\ORM\EntityRepository;
 
 class CarRepository extends EntityRepository
 {
-
     public function getFreeCar()
     {
         return $this->createQueryBuilder('car')

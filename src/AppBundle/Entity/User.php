@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -26,7 +25,7 @@ class User implements UserInterface
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -46,7 +45,7 @@ class User implements UserInterface
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
@@ -54,7 +53,7 @@ class User implements UserInterface
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -73,12 +72,10 @@ class User implements UserInterface
     /**
      * @return ArrayCollection|Orders[]
      */
-    public function getOrders()
+    public function getOrders(): array
     {
         return $this->orders;
     }
-
-
 
     /**
      * The encoded password
@@ -101,7 +98,7 @@ class User implements UserInterface
     private $roles = [];
 
 
-    public function getRoles()
+    public function getRoles(): array
     {
         $roles = $this->roles;
 
@@ -120,7 +117,7 @@ class User implements UserInterface
 
 
     // needed by the security system
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->email;
     }
@@ -130,9 +127,7 @@ class User implements UserInterface
         return $this->getUsername();
     }
 
-
-
-    public function getPassword()
+    public function getPassword(): string
     {
         return $this->password;
     }
@@ -147,12 +142,12 @@ class User implements UserInterface
         $this->plainPassword = null;
     }
 
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }

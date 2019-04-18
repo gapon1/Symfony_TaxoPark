@@ -3,7 +3,6 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Car;
-use AppBundle\Entity\Orders;
 use AppBundle\Entity\User;
 use AppBundle\Repository\CarRepository;
 use AppBundle\Repository\UserRepository;
@@ -17,17 +16,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class OrderFormType extends AbstractType
 {
-
     public function getUserId(UserInterface $user)
     {
         $userEmail = $user->getUsername();
-
         return $userEmail;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder
             ->add('fromAddress')
             ->add('toAddress')
@@ -56,7 +52,6 @@ class OrderFormType extends AbstractType
                     return $repository->getCar();
                 }
             ]);
-
 
     }
 

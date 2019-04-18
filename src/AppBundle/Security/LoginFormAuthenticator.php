@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pro
- * Date: 2019-03-25
- * Time: 18:19
- */
 
 namespace AppBundle\Security;
 
@@ -36,7 +30,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     public function getCredentials(Request $request)
     {
-
         //======== Check if USER submited form ======
         $isLoginSubmit = $request->getPathInfo() == '/login' && $request->isMethod('POST');
 
@@ -44,49 +37,39 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
             return;
         }
 
-
-
         $form = $this->formFactory->create(LoginForm::class);
         $form->handleRequest($request);
-
         $data = $form->getData();
-
         $request->getSession()->set(
-          Security::LAST_USERNAME,
-          $data['_username']
+            Security::LAST_USERNAME,
+            $data['_username']
         );
 
         return $data;
-
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $username = $credentials['_username'];
-
         return $this->em->getRepository('AppBundle:User')
             ->findOneBy([
                 'email' => $username
             ]);
-
-
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-         $password = $credentials['_password'];
+        $password = $credentials['_password'];
 
 //        if ($this->passwordEncoder->isPasswordValid($user, $password)) {
 //            return true;
 //        }
-
 
         if ($password == 'iliketurtles') {
             return true;
         }
         return false;
     }
-
 
     protected function getLoginUrl()
     {
@@ -95,8 +78,6 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
 
     protected function getDefaultSuccessRedirectUrl()
     {
-
         return $this->router->generate('homepage');
-
     }
 }

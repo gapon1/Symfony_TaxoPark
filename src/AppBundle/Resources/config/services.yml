@@ -1,0 +1,7 @@
+services:
+    app.admin.people:
+        class: AppBundle\Admin\PeopleAdmin
+        arguments: [~, AppBundle\Entity\People, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: People }
+        public: true

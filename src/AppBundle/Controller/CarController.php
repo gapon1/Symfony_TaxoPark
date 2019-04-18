@@ -13,36 +13,11 @@ use AppBundle\Form\CarFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
-
 
 class CarController extends Controller
 {
     /**
-     * @Route("car/new", name="car")
-     *
-     */
-    public function newAction()
-    {
-        $random = rand(1, 7);
-
-        $car = new Car();
-        $car->setName("BMW" . $random);
-        $car->setCarType('Universal');
-        $car->setDriverId(rand(1, 10));
-        $car->setCarDiscript('Some Descriptions');
-        $car->setCarImg('BMW-' . $random . '.png');
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($car);
-        $em->flush();
-
-        return new Response('<html><body>Car created</body></html>');
-    }
-
-    /**
      * @Route("/car_list", name="car_list")
-     *
      */
     public function listAction(Request $request)
     {
@@ -78,12 +53,10 @@ class CarController extends Controller
         if (!$car) {
             throw $this->createNotFoundException('Car not found');
         }
-
         return $this->render('taxopark/show.html.twig', [
             'car' => $car
         ]);
     }
-
 
     /**
      * @Route("/car/{id}/edit", name="car_edit")
@@ -91,7 +64,6 @@ class CarController extends Controller
     public function editAction(Request $request, Car $users)
     {
         $form = $this->createForm(CarFormType::class, $users);
-
         // only handles data on POST
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -111,26 +83,21 @@ class CarController extends Controller
         ]);
     }
 
-
     /**
      * @Route("/delete_car/{id}", name="delete_car")
-     *
      */
     public function deleteAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('AppBundle:Car')->find($id);
-
         if (!$user) {
             return $this->redirectToRoute('car_list');
         }
-
         $em->remove($user);
         $em->flush();
 
         return $this->redirectToRoute('car_list');
-
     }
 
-
 }
+

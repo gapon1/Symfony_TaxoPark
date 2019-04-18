@@ -25,7 +25,6 @@ class Builder implements ContainerAwareInterface
         return $menu;
     }
 
-
     public function driverMenu(FactoryInterface $factory, array $options)
     {
         $menu = $factory->createItem('root');
@@ -67,7 +66,6 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('Main', ['route' => 'homepage']);
         $menu->addChild('Free Cars', ['route' => 'ordersForDriver']);
         $menu->addChild('Get Order', ['route' => 'get_free_car']);
-
 
         return $menu;
     }

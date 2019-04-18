@@ -22,31 +22,30 @@ class LoadFixtures extends Fixture
                 'providers' => [$this]
             ]
         );
-
     }
 
-    public function carName()
+    public function carName(): array
     {
         $generate = ['BMW-1', 'BMW-2', 'BMW-3', 'BMW-4', 'BMW-5', 'BMW-6', 'BMW-7'];
         $key = array_rand($generate);
         return $generate[$key];
     }
 
-    public function carType()
+    public function carType(): array
     {
         $generate = ['Universal', 'Economy', 'Premium', 'Luxury'];
         $key = array_rand($generate);
         return $generate[$key];
     }
 
-    public function status()
+    public function status(): array
     {
         $generate = ['call', 'waiting', 'satDown', 'finished'];
         $key = array_rand($generate);
         return $generate[$key];
     }
 
-    public function role()
+    public function role(): array
     {
         $generate = ['ADMIN', 'CUSTOMER', 'DRIVER'];
         $key = array_rand($generate);

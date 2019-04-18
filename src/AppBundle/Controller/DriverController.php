@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: pro
- * Date: 2019-03-28
- * Time: 20:36
- */
 
 namespace AppBundle\Controller;
 
@@ -21,7 +15,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class DriverController extends Controller
 {
-
     /**
      * @Route("/freeOrder", name="ordersForDriver")
      */
@@ -39,7 +32,6 @@ class DriverController extends Controller
             'driver_orders' => $driver_orders,
         ]);
     }
-
 
     /**
      * @Route("/take_order/{id}", name="take_order")
@@ -101,6 +93,5 @@ class DriverController extends Controller
             'orderStatus' => $form->createView()
         ]);
     }
-
 
 }

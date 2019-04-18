@@ -22,7 +22,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class UserController extends Controller
 {
-
     /**
      * @Route("/all_users", name="all_users")
      */
@@ -31,7 +30,6 @@ class UserController extends Controller
         $em = $this->getDoctrine()->getManager();
         $get_users = $em->getRepository('AppBundle:User')
             ->findAll();
-
         /**
          * @var $paginator
          */
@@ -65,16 +63,12 @@ class UserController extends Controller
         ]);
     }
 
-
     // ================== ADD Data in form =============
-
     /**
      * @Route("/add_user/new", name="user_new_create")
      */
     public function newAction(Request $request)
     {
-
-
         $form = $this->createForm(UserFormType::class);
         // only handles data on POST
         $form->handleRequest($request);
@@ -98,7 +92,6 @@ class UserController extends Controller
     }
 
     // ================== Update Data in form =============
-
     /**
      * @Route("/user/{id}/edit", name="user_edit")
      */
@@ -124,7 +117,6 @@ class UserController extends Controller
     }
 
     // ================ DELETE USER ================
-
     /**
      * @Route("/delete/{id}", name="delete")
      */
@@ -132,11 +124,9 @@ class UserController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $user = $em->getRepository('AppBundle:User')->find($id);
-
         if (!$user) {
             return $this->redirectToRoute('all_users');
         }
-
         $em->remove($user);
         $em->flush();
 

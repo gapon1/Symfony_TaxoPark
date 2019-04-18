@@ -8,7 +8,6 @@
 
 namespace AppBundle\Controller\Admin;
 
-
 use AppBundle\Entity\User;
 use AppBundle\Form\UserRegistrationForm;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -22,9 +21,7 @@ class UserRegisterController extends Controller
      */
     public function registerAction(Request $request)
     {
-
         $form = $this->createForm(UserRegistrationForm::class);
-
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -52,8 +49,6 @@ class UserRegisterController extends Controller
         return $this->render('authorizate/registration.html.twig', [
             'form' => $form->createView()
         ]);
-
-
     }
 
 }

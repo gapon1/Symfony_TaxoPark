@@ -8,7 +8,6 @@
 
 namespace AppBundle\Form;
 
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,9 +20,7 @@ class CarFormType extends AbstractType
             ->add('carName')
             ->add('carImg')
             ->add('carDiscript')
-            ->add('carType')
-
-        ;
+            ->add('carType');
     }
 
     public function configureOptions(OptionsResolver $resolver)
@@ -33,3 +30,4 @@ class CarFormType extends AbstractType
         ]);
     }
 }
+

@@ -24,7 +24,6 @@ class Car
      */
     private $id;
 
-
     /**
      *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\User")
@@ -35,7 +34,7 @@ class Car
     /**
      * @return mixed
      */
-    public function getDriverId()
+    public function getDriverId(): int
     {
         return $this->driver_id;
     }
@@ -43,22 +42,16 @@ class Car
     /**
      * @param mixed $driver_id
      */
-    public function setDriverId($driver_id)
+    public function setDriverId(int $driver_id)
     {
         $this->driver_id = $driver_id;
     }
-
-
-
-
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Orders", mappedBy="car")
      *
      */
     private $car_id;
-
-
 
     public function __construct()
     {
@@ -68,7 +61,7 @@ class Car
     /**
      * @return mixed
      */
-    public function getCarId()
+    public function getCarId(): int
     {
         return $this->car_id;
     }
@@ -76,21 +69,15 @@ class Car
     /**
      * @param mixed $car_id
      */
-    public function setCarId($car_id)
+    public function setCarId(int $car_id)
     {
         $this->car_id = $car_id;
     }
-
-
-
 
     /**
      * @ORM\Column(type="string")
      */
     private $car_name;
-
-
-
 
     /**
      * @ORM\Column(type="string")
@@ -108,11 +95,10 @@ class Car
      */
     private $carImg;
 
-
     /**
      * @return mixed
      */
-    public function getCarImg()
+    public function getCarImg(): string
     {
         return $this->carImg;
     }
@@ -120,7 +106,7 @@ class Car
     /**
      * @param mixed $carImg
      */
-    public function setCarImg($carImg)
+    public function setCarImg(string $carImg)
     {
         $this->carImg = $carImg;
     }
@@ -128,7 +114,7 @@ class Car
     /**
      * @return mixed
      */
-    public function getCarDiscript()
+    public function getCarDiscript(): string
     {
         return $this->carDiscript;
     }
@@ -136,7 +122,7 @@ class Car
     /**
      * @param mixed $carDiscript
      */
-    public function setCarDiscript($carDiscript)
+    public function setCarDiscript(string $carDiscript)
     {
         $this->carDiscript = $carDiscript;
     }
@@ -144,7 +130,7 @@ class Car
     /**
      * @return mixed
      */
-    public function getCarType()
+    public function getCarType(): string
     {
         return $this->car_type;
     }
@@ -152,16 +138,15 @@ class Car
     /**
      * @param mixed $car_type
      */
-    public function setCarType($car_type)
+    public function setCarType(string $car_type)
     {
         $this->car_type = $car_type;
     }
 
-
     /**
      * @return mixed
      */
-    public function getCarName()
+    public function getCarName(): string
     {
         return $this->car_name;
     }
@@ -169,36 +154,27 @@ class Car
     /**
      * @param mixed $car_name
      */
-    public function setCarName($car_name)
+    public function setCarName(string $car_name)
     {
         $this->car_name = $car_name;
     }
-
 
     public function __toString()
     {
         return $this->getCarName();
     }
 
-
-
-    public function getUpdatedAt()
+    public function getUpdatedAt(): object
     {
-        return new \DateTime('-'.rand(0,100). 'days');
-
+        return new \DateTime('-' . rand(0, 100) . 'days');
     }
 
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
-
-
-
-
-
 
 }

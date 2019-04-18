@@ -9,7 +9,6 @@
 namespace AppBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,8 +28,6 @@ class Orders
      * @ORM\Column(type="date", nullable=true)
      */
     private $date;
-
-
 
     /**
      * @ORM\Column(type="string")
@@ -55,8 +52,6 @@ class Orders
         $this->driver_id = $driver_id;
     }
 
-
-
     /**
      * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Car", inversedBy="orders")
@@ -64,11 +59,10 @@ class Orders
      */
     private $car;
 
-
     /**
      * @return mixed
      */
-    public function getCar()
+    public function getCar(): int
     {
         return $this->car;
     }
@@ -76,11 +70,10 @@ class Orders
     /**
      * @param mixed $car
      */
-    public function setCar($car)
+    public function setCar(Car $car)
     {
         $this->car = $car;
     }
-
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="orders")
@@ -91,7 +84,7 @@ class Orders
     /**
      * @return mixed
      */
-    public function getUserOrder()
+    public function getUserOrder(): int
     {
         return $this->user_order;
     }
@@ -103,13 +96,6 @@ class Orders
     {
         $this->user_order = $user_order;
     }
-
-
-
-
-
-
-
 
     /**
      * @ORM\Column(type="string")
@@ -129,7 +115,7 @@ class Orders
     /**
      * @return mixed
      */
-    public function getFromAddress()
+    public function getFromAddress(): string
     {
         return $this->fromAddress;
     }
@@ -137,7 +123,7 @@ class Orders
     /**
      * @param mixed $fromAddress
      */
-    public function setFromAddress($fromAddress)
+    public function setFromAddress(string $fromAddress)
     {
         $this->fromAddress = $fromAddress;
     }
@@ -145,7 +131,7 @@ class Orders
     /**
      * @return mixed
      */
-    public function getToAddress()
+    public function getToAddress(): string
     {
         return $this->toAddress;
     }
@@ -153,7 +139,7 @@ class Orders
     /**
      * @param mixed $toAddress
      */
-    public function setToAddress($toAddress)
+    public function setToAddress(string $toAddress)
     {
         $this->toAddress = $toAddress;
     }
@@ -161,7 +147,7 @@ class Orders
     /**
      * @return mixed
      */
-    public function getStatus()
+    public function getStatus(): string
     {
         return $this->status;
     }
@@ -169,7 +155,7 @@ class Orders
     /**
      * @param mixed $status
      */
-    public function setStatus($status)
+    public function setStatus(string $status)
     {
         $this->status = $status;
     }
@@ -177,11 +163,10 @@ class Orders
     /**
      * @return mixed
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
-
 
     public function getDate()
     {
@@ -192,7 +177,6 @@ class Orders
     {
         $this->date = $date;
     }
-
 
 
 }
